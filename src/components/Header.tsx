@@ -9,11 +9,18 @@ import logo from '../assets/logo.png';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { language, toggleLanguage } = useLanguage();
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
   const t = translations[language];
   const navigate = useNavigate();
   const location = useLocation();
   const [pendingSection, setPendingSection] = useState<string | null>(null);
+
+  const languages = [
+    { code: 'el' as const, label: 'Ελληνικά', flag: '🇬🇷' },
+    { code: 'en' as const, label: 'English', flag: '🇬🇧' },
+    { code: 'fr' as const, label: 'Français', flag: '🇫🇷' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +39,20 @@ const Header: React.FC = () => {
       setPendingSection(null);
     }
   }, [location.pathname, pendingSection]);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (isLangMenuOpen && !target.closest('.language-dropdown')) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    if (isLangMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isLangMenuOpen]);
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false); // Κλείνει πάντα το μενού
@@ -192,7 +213,50 @@ const Header: React.FC = () => {
 
           {/* Language Toggle & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Το κουμπί αλλαγής γλώσσας αφαιρείται */}
+            {/* Language Toggle Button */}
+            <div className="relative language-dropdown">
+              <motion.button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center gap-2 px-3 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Change language"
+              >
+                <Globe className="h-5 w-5" />
+                <span className="hidden sm:inline text-sm font-medium">
+                  {languages.find(l => l.code === language)?.flag} {languages.find(l => l.code === language)?.code.toUpperCase()}
+                </span>
+              </motion.button>
+              {/* Language Dropdown */}
+              <AnimatePresence>
+                {isLangMenuOpen && (
+                  <motion.div
+                    className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {languages.map((lang) => (
+                      <motion.button
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsLangMenuOpen(false);
+                        }}
+                        className={`w-full px-4 py-3 text-left hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2 ${
+                          language === lang.code ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700'
+                        }`}
+                        whileHover={{ x: 4 }}
+                      >
+                        <span>{lang.flag}</span>
+                        <span>{lang.label}</span>
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
             {/* Mobile menu button */}
             <div className="md:hidden">
               <motion.button

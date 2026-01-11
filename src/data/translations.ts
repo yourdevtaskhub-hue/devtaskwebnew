@@ -19,7 +19,8 @@ export const translations = {
     // Services
     services: {
       title: 'Υπηρεσίες',
-      subtitle: 'Παρέχω ολοκληρωμένες λύσεις ανάπτυξης για τις ψηφιακές σας ανάγκες',
+      subtitle: 'Εξειδικευμένες λύσεις για επιχειρήσεις και επαγγελματίες που απαιτούν κορυφαία ποιότητα, τεχνογνωσία και σύγχρονο design.',
+      more: 'Περισσότερα',
       items: {
         web: {
           title: 'Κατασκευή Ιστοσελίδων',
@@ -103,24 +104,65 @@ export const translations = {
     // Contact
     contact: {
       title: 'Επικοινωνία',
-      subtitle: 'Ας συζητήσουμε το επόμενό σας project',
+      subtitle: 'Είστε έτοιμοι να ξεκινήσουμε το επόμενο project σας ή έχετε απορίες;\nΣυμπληρώστε τη φόρμα ή επικοινωνήστε απευθείας μαζί μας για άμεση ανταπόκριση και τεχνική αξιοπιστία.',
+      description: 'Είστε έτοιμοι να ξεκινήσουμε το επόμενο project σας ή έχετε απορίες;\nΣυμπληρώστε τη φόρμα ή επικοινωνήστε απευθείας μαζί μας για άμεση ανταπόκριση και τεχνική αξιοπιστία.',
       form: {
         name: 'Όνομα',
+        nameLabel: 'Όνομα',
+        namePlaceholder: 'Εισάγετε το όνομά σας',
+        nameRequired: 'Το όνομα είναι υποχρεωτικό',
         email: 'Email',
+        emailLabel: 'Email',
+        emailPlaceholder: 'example@email.com',
+        emailRequired: 'Εισάγετε έγκυρο email',
+        service: 'Υπηρεσία',
+        serviceLabel: 'Υπηρεσία',
+        servicePlaceholder: 'Επιλέξτε υπηρεσία (προαιρετικό)',
+        subject: 'Θέμα',
+        subjectLabel: 'Θέμα',
+        subjectPlaceholder: 'Προαιρετικό θέμα για το μήνυμά σας',
         message: 'Μήνυμα',
-        send: 'Αποστολή'
+        messageLabel: 'Μήνυμα',
+        messagePlaceholder: 'Γράψτε το μήνυμά σας εδώ...',
+        messageRequired: 'Το μήνυμα είναι υποχρεωτικό',
+        send: 'Αποστολή',
+        sending: 'Αποστολή...',
+        required: '*'
+      },
+      services: {
+        web: 'Κατασκευή Ιστοσελίδων',
+        mobile: 'Εφαρμογή iOS & Android',
+        eshop: 'e-shop',
+        ai: 'AI',
+        social: 'Social Media',
+        other: 'Άλλο..'
       },
       info: {
         location: 'Θεσσαλονίκη, Ελλάδα',
         phone: '+30 694 971 982 563',
         email: 'info@devtaskhub.com'
       },
-      success: 'Το μήνυμά σας στάλθηκε επιτυχώς!'
+      success: 'Το μήνυμά σας στάλθηκε επιτυχώς!',
+      emailCopied: 'Το email αντιγράφηκε!',
+      mailtoSubject: 'Επικοινωνία μέσω DevTaskHub'
     },
     // Footer
     footer: {
       description: 'Κατασκευή μοντέρνων ιστοσελίδων και εφαρμογών στη Θεσσαλονίκη',
       rights: 'Όλα τα δικαιώματα διατηρούνται.'
+    },
+    // HomeShowcase Section
+    homeShowcase: {
+      title: 'Κατασκευάζουμε ιστοσελίδες που εντυπωσιάζουν.',
+      subtitle: 'Συνδυάζουμε αισθητική, ταχύτητα και λειτουργικότητα με προσιτό κόστος. Από απλές σελίδες παρουσίασης μέχρι δυναμικές web εφαρμογές.',
+      bullets: [
+        'Αριστοτεχνικός σχεδιασμός με προσοχή στη λεπτομέρεια',
+        'Ταχύτατη απόκριση και βελτιστοποίηση για κάθε συσκευή',
+        'Premium αποτέλεσμα σε λογικές τιμές',
+        'Απόλυτη προσαρμογή στις ανάγκες του πελάτη',
+        'Hosting, SEO και υποστήριξη — όλα σε ένα'
+      ],
+      cta: 'Δείτε Δείγματα Εργασιών'
     }
   },
   en: {
@@ -243,6 +285,154 @@ export const translations = {
     footer: {
       description: 'Building modern websites and applications in Thessaloniki',
       rights: 'All rights reserved.'
+    },
+    // HomeShowcase Section
+    homeShowcase: {
+      title: 'We build websites that impress.',
+      subtitle: 'We combine aesthetics, speed, and functionality with affordable cost. From simple presentation pages to dynamic web applications.',
+      bullets: [
+        'Masterful design with attention to detail',
+        'Fastest response and optimization for every device',
+        'Premium result at reasonable prices',
+        'Absolute customization to the customer\'s needs',
+        'Hosting, SEO, and support – all in one'
+      ],
+      cta: 'View Portfolio Samples'
+    }
+  },
+  fr: {
+    // Navigation
+    nav: {
+      home: 'Accueil',
+      services: 'Services',
+      about: 'À propos',
+      portfolio: 'Portfolio',
+      contact: 'Contact'
+    },
+    // Hero Section
+    hero: {
+      title: 'Nous construisons des sites web modernes et fonctionnels',
+      titleHighlight: 'sites web',
+      subtitle: 'Développeurs Full-Stack à Thessalonique spécialisés dans les applications web, applications mobiles et solutions IA',
+      cta: 'Voir nos Services',
+      contact: 'Contactez-nous'
+    },
+    // Services
+    services: {
+      title: 'Services',
+      subtitle: 'Je fournis des solutions de développement complètes pour vos besoins numériques',
+      items: {
+        web: {
+          title: 'Développement Web',
+          description: 'Sites web modernes et réactifs axés sur les performances et l\'UX'
+        },
+        mobile: {
+          title: 'Applications Mobiles',
+          description: 'Applications natives et multiplateformes pour Android et iOS'
+        },
+        ai: {
+          title: 'IA et Chatbots',
+          description: 'Solutions d\'intelligence artificielle intelligentes et d\'automatisation'
+        },
+        ecommerce: {
+          title: 'e-Commerce',
+          description: 'Boutiques en ligne complètes avec des fonctionnalités modernes'
+        },
+        games: {
+          title: 'Développement de Jeux',
+          description: 'Jeux interactifs pour plateformes web et mobiles'
+        },
+        uiux: {
+          title: 'Design UX/UI',
+          description: 'Conception d\'interfaces qui combinent esthétique et fonctionnalité'
+        },
+        content: {
+          title: 'Contenu Multimédia',
+          description: 'Création de vidéos, animations et production de contenu visuel'
+        },
+        seo: {
+          title: 'SEO et Marketing',
+          description: 'Stratégies d\'optimisation et solutions de marketing numérique'
+        },
+        database: {
+          title: 'Bases de données et Cloud',
+          description: 'Conception de bases de données et configuration d\'infrastructure cloud'
+        }
+      }
+    },
+    // About
+    about: {
+      title: 'À propos de nous',
+      subtitle: 'L\'équipe DevTaskHub - Développeurs Full-Stack',
+      description: 'Avec une passion pour la technologie et des années d\'expérience dans le développement de logiciels, nous créons des solutions numériques qui combinent innovation et fonctionnalité. Basés à Thessalonique, nous travaillons avec des clients de Grèce et à l\'étranger.',
+      experience: 'Expertise',
+      experienceItems: [
+        'Développement JavaScript/TypeScript et React moderne',
+        'Développement Backend (Node.js, Python)',
+        'Développement Mobile (React Native, Flutter)',
+        'Intégration IA/ML et Chatbots',
+        'Infrastructure Cloud (AWS, Azure)',
+        'Conception et optimisation de bases de données'
+      ]
+    },
+    // Portfolio
+    portfolio: {
+      title: 'Portfolio',
+      subtitle: 'Quelques-uns des projets récents que nous avons réalisés',
+      viewProject: 'Voir le projet',
+      projects: {
+        ecommerce: {
+          title: 'Boutique de Mode en Ligne',
+          description: 'Boutique e-commerce complète avec système de paiement'
+        },
+        restaurant: {
+          title: 'Application Restaurant',
+          description: 'Application mobile de commande avec suivi en temps réel'
+        },
+        dashboard: {
+          title: 'Tableau de bord Analytics',
+          description: 'Plateforme d\'analyse de données pour les entreprises'
+        },
+        game: {
+          title: 'Jeu Puzzle',
+          description: 'Jeu interactif avec graphiques 3D'
+        }
+      }
+    },
+    // Contact
+    contact: {
+      title: 'Contact',
+      subtitle: 'Discutons de votre prochain projet',
+      form: {
+        name: 'Nom',
+        email: 'Email',
+        message: 'Message',
+        send: 'Envoyer'
+      },
+      info: {
+        location: 'Thessalonique, Grèce',
+        phone: '+30 694 971 982 563',
+        email: 'info@devtaskhub.com'
+      },
+      success: 'Votre message a été envoyé avec succès!'
+    },
+    // Footer
+    footer: {
+      description: 'Construction de sites web et d\'applications modernes à Thessalonique',
+      rights: 'Tous droits réservés.'
+    },
+    // HomeShowcase Section
+    homeShowcase: {
+      title: 'Nous construisons des sites web qui impressionnent.',
+      subtitle: 'Nous combinons esthétique, rapidité et fonctionnalité à un prix abordable. Des pages de présentation simples aux applications web dynamiques.',
+      bullets: [
+        'Design magistral avec attention aux détails',
+        'Réponse la plus rapide et optimisation pour chaque appareil',
+        'Résultat premium à des prix raisonnables',
+        'Personnalisation absolue selon les besoins du client',
+        'Hébergement, SEO et support – tout en un'
+      ],
+      cta: 'Voir les Échantillons du Portfolio'
     }
   }
 };

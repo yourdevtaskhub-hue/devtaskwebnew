@@ -2,32 +2,36 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGem, FaBolt, FaBullseye, FaTools, FaRocket } from 'react-icons/fa';
 import { useIsMobile } from '../hooks/useIsMobile';
-
-const bullets = [
-  {
-    icon: <FaGem className="text-cyan-500 text-2xl md:text-3xl animate-pulse" />,
-    text: 'Αριστοτεχνικός σχεδιασμός με προσοχή στη λεπτομέρεια',
-  },
-  {
-    icon: <FaBolt className="text-yellow-400 text-2xl md:text-3xl animate-bounce" />,
-    text: 'Ταχύτατη απόκριση και βελτιστοποίηση για κάθε συσκευή',
-  },
-  {
-    icon: <FaBullseye className="text-pink-500 text-2xl md:text-3xl animate-pulse" />,
-    text: 'Premium αποτέλεσμα σε λογικές τιμές',
-  },
-  {
-    icon: <FaTools className="text-indigo-500 text-2xl md:text-3xl animate-spin-slow" />,
-    text: 'Απόλυτη προσαρμογή στις ανάγκες του πελάτη',
-  },
-  {
-    icon: <FaRocket className="text-blue-500 text-2xl md:text-3xl animate-bounce" />,
-    text: 'Hosting, SEO και υποστήριξη — όλα σε ένα',
-  },
-];
+import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 
 const HomeShowcaseSection: React.FC = () => {
   const isMobile = useIsMobile();
+  const { language } = useLanguage();
+  const t = translations[language];
+
+  const bullets = [
+    {
+      icon: <FaGem className="text-cyan-500 text-2xl md:text-3xl animate-pulse" />,
+      text: t.homeShowcase.bullets[0],
+    },
+    {
+      icon: <FaBolt className="text-yellow-400 text-2xl md:text-3xl animate-bounce" />,
+      text: t.homeShowcase.bullets[1],
+    },
+    {
+      icon: <FaBullseye className="text-pink-500 text-2xl md:text-3xl animate-pulse" />,
+      text: t.homeShowcase.bullets[2],
+    },
+    {
+      icon: <FaTools className="text-indigo-500 text-2xl md:text-3xl animate-spin-slow" />,
+      text: t.homeShowcase.bullets[3],
+    },
+    {
+      icon: <FaRocket className="text-blue-500 text-2xl md:text-3xl animate-bounce" />,
+      text: t.homeShowcase.bullets[4],
+    },
+  ];
   return (
     <section
       className="relative py-24 md:py-40 bg-gradient-to-br from-blue-50 via-white to-indigo-50 overflow-hidden"
@@ -68,7 +72,7 @@ const HomeShowcaseSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          Κατασκευάζουμε ιστοσελίδες που εντυπωσιάζουν.
+          {t.homeShowcase.title}
           {!isMobile && (
             <motion.div
               className="h-1.5 w-40 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 rounded-full mx-auto mt-4"
@@ -87,7 +91,7 @@ const HomeShowcaseSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Συνδυάζουμε αισθητική, ταχύτητα και λειτουργικότητα με προσιτό κόστος. Από απλές σελίδες παρουσίασης μέχρι δυναμικές web εφαρμογές.
+          {t.homeShowcase.subtitle}
         </motion.p>
         {/* Bullets - Enhanced Premium Cards */}
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-16 w-full max-w-4xl mx-auto">
@@ -101,7 +105,7 @@ const HomeShowcaseSection: React.FC = () => {
               whileHover={{ scale: 1.03, y: -5 }}
               className="relative group"
             >
-              <div className="flex items-center gap-5 glass-luxury-strong rounded-2xl shadow-luxury-lg border border-blue-100/50 hover:border-blue-200/80 px-8 py-6 text-lg font-medium text-gray-800 hover:shadow-luxury-xl transition-all duration-300 backdrop-blur-xl">
+              <div className="flex items-center gap-5 glass-luxury-strong rounded-2xl shadow-luxury-lg border border-blue-100/50 hover:border-blue-200/80 px-8 py-6 text-lg font-medium text-gray-800 transition-all duration-300 backdrop-blur-xl">
                 {/* Premium Glow Effect on Hover */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -173,7 +177,7 @@ const HomeShowcaseSection: React.FC = () => {
             transition={{ duration: 0.7 }}
           />
           <span className="relative z-10 flex items-center justify-center gap-2">
-            Δείτε Δείγματα Εργασιών
+            {t.homeShowcase.cta}
             <motion.span
               animate={{ x: [0, 4, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, repeatType: 'reverse' }}

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
-export type Language = 'el' | 'en';
+export type Language = 'el' | 'en' | 'fr';
 
 export const useLanguage = () => {
   const [language, setLanguage] = useState<Language>('el');
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language') as Language;
-    if (savedLanguage && (savedLanguage === 'el' || savedLanguage === 'en')) {
+    if (savedLanguage && (savedLanguage === 'el' || savedLanguage === 'en' || savedLanguage === 'fr')) {
       setLanguage(savedLanguage);
     }
   }, []);
@@ -16,12 +16,16 @@ export const useLanguage = () => {
     document.documentElement.lang = language;
   }, [language]);
 
-  const toggleLanguage = () => {
-    const newLanguage = language === 'el' ? 'en' : 'el';
-    setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-    document.documentElement.lang = newLanguage;
+  const setLanguageDirect = (lang: Language) => {
+    setLanguage(lang);
+    localStorage.setItem('language', lang);
+    document.documentElement.lang = lang;
   };
 
-  return { language, toggleLanguage };
+  const toggleLanguage = () => {
+    const newLanguage = language === 'el' ? 'en' : language === 'en' ? 'fr' : 'el';
+    setLanguageDirect(newLanguage);
+  };
+
+  return { language, toggleLanguage, setLanguage: setLanguageDirect };
 };
