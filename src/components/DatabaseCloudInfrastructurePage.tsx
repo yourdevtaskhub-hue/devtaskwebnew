@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaCloud, FaDatabase, FaLock, FaServer, FaCheckCircle, FaChartLine } from 'react-icons/fa';
 import { SiPostgresql, SiMysql, SiMongodb, SiFirebase, SiSupabase, SiAmazon, SiGooglecloud } from 'react-icons/si';
 import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 // import cloudLottie from '../assets/lottie-cloud.json';
 const cloudLottie = {};
 const hoverSfx = '';
@@ -158,14 +159,14 @@ export default function DatabaseCloudInfrastructurePage() {
         {/* Hero Content */}
         <motion.div className="relative z-20 max-w-3xl mx-auto px-4 py-32 text-center flex flex-col items-center">
           <motion.h1 className="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-lg tracking-tight bg-gradient-to-r from-blue-700 to-gray-600 bg-clip-text text-transparent" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} style={{ fontFamily: "'Poppins', 'Roboto', 'Inter', sans-serif" }}>
-            {language === 'el' ? 'Βάσεις Δεδομένων & Cloud Υποδομές' : 'Database & Cloud Infrastructure'}
+            {t.services.pages.databaseCloudInfrastructure.hero.title}
           </motion.h1>
           <motion.p className="text-xl md:text-2xl text-gray-700 mb-10 font-medium max-w-2xl mx-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
-            {language === 'el' ? 'Διαχειρίζομαι βάσεις δεδομένων και υλοποιούμε ασφαλείς, επεκτάσιμες cloud-based λύσεις.' : 'We manage databases and implement secure, scalable cloud-based solutions.'}
+            {t.services.pages.databaseCloudInfrastructure.hero.subtitle}
           </motion.p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-            <motion.button className="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-gray-400 text-white rounded-full font-bold text-lg shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{language === 'el' ? 'Ζητήστε Προσφορά' : 'Request a Quote'}</span></motion.button>
-            <motion.button className="inline-block px-10 py-4 bg-gradient-to-r from-gray-400 to-blue-600 text-white rounded-full font-bold text-lg shadow-3xl border-2 border-transparent hover:border-gray-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }); }}><span className="relative z-10">{language === 'el' ? 'Περισσότερα' : 'Learn More'}</span></motion.button>
+            <motion.button className="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-gray-400 text-white rounded-full font-bold text-lg shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{t.services.pages.databaseCloudInfrastructure.hero.cta}</span></motion.button>
+            <motion.button className="inline-block px-10 py-4 bg-gradient-to-r from-gray-400 to-blue-600 text-white rounded-full font-bold text-lg shadow-3xl border-2 border-transparent hover:border-gray-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { document.getElementById('services-section')?.scrollIntoView({ behavior: 'smooth' }); }}><span className="relative z-10">{t.services.pages.databaseCloudInfrastructure.hero.learnMore}</span></motion.button>
           </div>
         </motion.div>
       </section>
@@ -199,12 +200,12 @@ export default function DatabaseCloudInfrastructurePage() {
       {/* How We Work */}
       <section className="max-w-4xl mx-auto py-24 px-4">
         <div className="relative bg-gradient-to-br from-blue-100 via-white to-purple-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-100/40 p-10 flex flex-col items-center gap-10 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{language === 'el' ? 'Πώς Δουλεύουμε' : 'How We Work'}</h2>
-          <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">{language === 'el' ? 'Ακολουθούμε μια δομημένη διαδικασία για να διασφαλίσουμε την επιτυχία κάθε έργου.' : 'We follow a structured process to ensure project success.'}</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.databaseCloudInfrastructure.workflow.title}</h2>
+          <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">{t.services.pages.databaseCloudInfrastructure.workflow.description}</p>
           {/* Timeline */}
           <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
             {workflow.map((step, idx) => (
-              <div key={step.gr} className="flex items-center w-full mb-8 last:mb-0">
+              <div key={idx} className="flex items-center w-full mb-8 last:mb-0">
                 <div className="flex flex-col items-center mr-6">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
                     {idx + 1}
@@ -217,7 +218,7 @@ export default function DatabaseCloudInfrastructurePage() {
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
                     {step.icon}
                   </div>
-                  <span className="text-base font-semibold text-blue-900 text-center md:text-left">{language === 'el' ? step.gr : step.en}</span>
+                  <span className="text-base font-semibold text-blue-900 text-center md:text-left">{step.title}</span>
                 </div>
               </div>
             ))}
@@ -237,10 +238,10 @@ export default function DatabaseCloudInfrastructurePage() {
 
       {/* Why Choose Us */}
       <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-gray-500 bg-clip-text text-transparent drop-shadow-lg">{language === 'el' ? 'Γιατί να Επιλέξετε Εμάς;' : 'Why Choose Us?'}</motion.h2>
+        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-gray-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.databaseCloudInfrastructure.whyUs.title}</motion.h2>
         <motion.ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.10 } } }}>
           {whyUs.map((w, idx) => (
-            <motion.li key={w.gr} className="flex items-center gap-4 bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-blue-100/40 p-6 text-lg font-medium text-gray-800 hover:shadow-2xl transition-all duration-300" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.04 }} viewport={{ once: true }}><FaCheckCircle className="text-green-500 text-2xl flex-shrink-0" /><span>{language === 'el' ? w.gr : w.en}</span></motion.li>
+            <motion.li key={idx} className="flex items-center gap-4 bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-blue-100/40 p-6 text-lg font-medium text-gray-800 hover:shadow-2xl transition-all duration-300" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} whileHover={{ scale: 1.04 }} viewport={{ once: true }}><FaCheckCircle className="text-green-500 text-2xl flex-shrink-0" /><span>{w}</span></motion.li>
           ))}
         </motion.ul>
       </section>

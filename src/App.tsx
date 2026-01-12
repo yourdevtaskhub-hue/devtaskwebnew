@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -29,10 +30,11 @@ const Placeholder = ({ name }: { name: string }) => <div style={{padding:40, tex
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-    <div className="min-h-screen">
-      <Header />
+    <LanguageProvider>
+      <Router>
+        <ScrollToTop />
+      <div className="min-h-screen">
+        <Header />
       <main>
           <Routes>
             <Route path="/" element={
@@ -185,6 +187,7 @@ function App() {
       <Footer />
     </div>
     </Router>
+    </LanguageProvider>
   );
 }
 

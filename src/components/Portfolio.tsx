@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { ExternalLink, Smartphone, Monitor, BarChart3, Gamepad2, Heart } from 'lucide-react';
 import { FaApple, FaAndroid, FaCloud, FaRocket, FaHeartbeat } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -59,15 +59,15 @@ const Portfolio: React.FC = () => {
     }
   }, [fullscreenImage]);
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       key: 'clinic',
       icon: Heart,
       image: clinicImg,
       technologies: ['React', 'Telemedicine', 'Healthcare', 'Booking'],
       gradient: 'from-red-500 to-pink-600',
-      title: 'Διαδικτυακό Ιατρείο Γονέων και Εφήβων',
-      description: 'Σύγχρονη πλατφόρμα τηλεϊατρικής που παρέχει διαδικτυακές συμβουλευτικές υπηρεσίες για γονείς και εφήβους. Το σύστημα προσφέρει online ραντεβού, ασφαλή επικοινωνία με ιατρούς, διαχείριση ιατρικών εγγράφων και πρόσβαση σε εκπαιδευτικό υλικό για θέματα υγείας, εφηβείας και οικογενειακής δυναμικής.',
+      title: t.portfolio.projects.clinic.title,
+      description: t.portfolio.projects.clinic.description,
       url: 'https://onlineparentteenclinic.com/'
     },
     {
@@ -76,8 +76,8 @@ const Portfolio: React.FC = () => {
       image: architectureImg,
       technologies: ['React', 'Tailwind', 'SEO'],
       gradient: 'from-blue-500 to-purple-600',
-      title: 'Αρχιτεκτονικό & Κατασκευαστικό Γραφείο',
-      description: 'Επαγγελματική ιστοσελίδα για αρχιτεκτονικό και κατασκευαστικό γραφείο με σύγχρονο design, portfolio έργων, παρουσίαση υπηρεσιών και βελτιστοποίηση για SEO. Η πλατφόρμα επιτρέπει την αποτελεσματική παρουσίαση των τεχνικών έργων και την επικοινωνία με πελάτες.',
+      title: t.portfolio.projects.architecture.title,
+      description: t.portfolio.projects.architecture.description,
       url: 'https://in-mavridis.gr/'
     },
     {
@@ -86,8 +86,8 @@ const Portfolio: React.FC = () => {
       image: hydrogenImg,
       technologies: ['Next.js', 'Booking', 'CMS'],
       gradient: 'from-green-500 to-teal-600',
-      title: 'Κέντρο Ευεξίας',
-      description: 'Πλήρης ψηφιακή πλατφόρμα για κέντρο ευεξίας με σύστημα online κρατήσεων, διαχείριση περιεχομένου (CMS), παρουσίαση υπηρεσιών wellness και ενσωματωμένο booking system. Η λύση προσφέρει seamless εμπειρία για τους πελάτες και αποτελεσματική διαχείριση για το κέντρο.',
+      title: t.portfolio.projects.wellness.title,
+      description: t.portfolio.projects.wellness.description,
       url: 'https://hydrogenlife.eu/'
     },
     {
@@ -96,8 +96,8 @@ const Portfolio: React.FC = () => {
       image: hotelImg,
       technologies: ['React', 'Gallery', 'Booking'],
       gradient: 'from-blue-400 to-indigo-500',
-      title: 'Ξενοδοχείο',
-      description: 'Ελκυστική ιστοσελίδα ξενοδοχείου με interactive photo gallery, σύστημα online κρατήσεων, παρουσίαση δωματίων και υπηρεσιών, και responsive design. Η πλατφόρμα δημιουργήθηκε για να προσελκύει επισκέπτες και να διευκολύνει τις κρατήσεις.',
+      title: t.portfolio.projects.hotel.title,
+      description: t.portfolio.projects.hotel.description,
       url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/'
     },
     {
@@ -106,11 +106,11 @@ const Portfolio: React.FC = () => {
       image: cryptoImg,
       technologies: ['React', 'Landing', 'Animation'],
       gradient: 'from-yellow-500 to-pink-500',
-      title: 'Προώθηση Custom CryptoCoin',
-      description: 'Δυναμική landing page για την προώθηση custom κρυπτονομίσματος με σύγχρονες animations, interactive elements, και conversion-optimized design. Η σελίδα παρουσιάζει το project με εντυπωσιακό τρόπο και ενθαρρύνει τους επισκέπτες να συμμετάσχουν.',
+      title: t.portfolio.projects.crypto.title,
+      description: t.portfolio.projects.crypto.description,
       url: 'https://panitoscryptocoin.com/'
     }
-  ];
+  ], [t, language]);
 
   return (
     <section id="portfolio" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 relative overflow-hidden">
@@ -170,7 +170,7 @@ const Portfolio: React.FC = () => {
                       rel="noopener noreferrer"
                       className="bg-white text-gray-900 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100 transition-colors duration-300 flex items-center space-x-2 shadow-xl"
                     >
-                      <span>Δείτε το έργο</span>
+                      <span>{t.portfolio.viewProject}</span>
                     </a>
                   </div>
                 </div>
@@ -214,7 +214,7 @@ const Portfolio: React.FC = () => {
 
       {/* Portfolio Showcase - GetFit App */}
       <section id="getfit-app-showcase" className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Δείγματα Εργασίας Εφαρμογών</motion.h2>
+        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.portfolio.appShowcase.title}</motion.h2>
         
         {/* GetFit App Showcase */}
         <motion.div 
@@ -245,24 +245,15 @@ const Portfolio: React.FC = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-blue-900">GetFit</h3>
                 </div>
                 <p className="text-lg text-gray-700 leading-relaxed">
-                  Μια ολοκληρωμένη εφαρμογή διαχείρισης γυμναστηρίων που αναπτύχθηκε από την DevTaskHub. 
-                  Η εφαρμογή προσφέρει πλήρη λύση για τη διαχείριση μελών, προγραμμάτων προπόνησης, 
-                  ραντεβού και πληρωμών.
+                  {t.portfolio.appShowcase.getFit.description}
                 </p>
               </div>
 
               {/* Features */}
               <div className="space-y-4">
-                <h4 className="text-xl font-semibold text-blue-800 mb-4">Βασικά Χαρακτηριστικά:</h4>
+                <h4 className="text-xl font-semibold text-blue-800 mb-4">{t.portfolio.appShowcase.getFit.featuresTitle}</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {[
-                    'Διαχείριση Μελών',
-                    'Προγράμματα Προπόνησης',
-                    'Σύστημα Ραντεβού',
-                    'Πληρωμές Online',
-                    'Push Notifications',
-                    'Αναφορές & Στατιστικά'
-                  ].map((feature, idx) => (
+                  {t.portfolio.appShowcase.getFit.features.map((feature, idx) => (
                     <motion.div 
                       key={feature}
                       className="flex items-center gap-3 bg-white/60 rounded-xl p-3 border border-blue-100"
@@ -280,12 +271,12 @@ const Portfolio: React.FC = () => {
 
               {/* Platforms */}
               <div className="space-y-4">
-                <h4 className="text-xl font-semibold text-blue-800 mb-4">Διαθέσιμη σε:</h4>
+                <h4 className="text-xl font-semibold text-blue-800 mb-4">{t.portfolio.appShowcase.getFit.platformsTitle}</h4>
                 <div className="flex flex-wrap gap-4">
                   {[
-                    { icon: <FaApple className="text-2xl" />, name: 'iOS App', color: 'from-gray-800 to-gray-600', url: 'https://apps.apple.com/us/app/getfit-skg/id6753928093' },
-                    { icon: <FaAndroid className="text-2xl" />, name: 'Android App', color: 'from-green-500 to-green-600', url: null },
-                    { icon: <FaCloud className="text-2xl" />, name: 'Web App', color: 'from-blue-500 to-blue-600', url: 'https://getfitskg.com/' }
+                    { icon: <FaApple className="text-2xl" />, name: t.portfolio.appShowcase.getFit.platforms.ios, color: 'from-gray-800 to-gray-600', url: 'https://apps.apple.com/us/app/getfit-skg/id6753928093' },
+                    { icon: <FaAndroid className="text-2xl" />, name: t.portfolio.appShowcase.getFit.platforms.android, color: 'from-green-500 to-green-600', url: null },
+                    { icon: <FaCloud className="text-2xl" />, name: t.portfolio.appShowcase.getFit.platforms.web, color: 'from-blue-500 to-blue-600', url: 'https://getfitskg.com/' }
                   ].map((platform, idx) => {
                     const Component = platform.url ? motion.a : motion.div;
                     const props = platform.url ? {

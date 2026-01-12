@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { servicesData } from '../services/servicesData';
 import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 import { useIsMobile } from '../hooks/useIsMobile';
 import {
   FaGlobe, FaMobileAlt, FaRobot, FaUsers, FaVideo, FaSearch, FaPhotoVideo, FaPalette, FaDatabase, FaBrain, FaShoppingCart, FaGamepad
@@ -45,6 +46,7 @@ const cardVariants = {
 
 const Services: React.FC = () => {
   const { language } = useLanguage();
+  const t = translations[language];
   const isMobile = useIsMobile();
   // Φιλτράρω το servicesData ώστε να μην εμφανίζεται το multimedia-content-creation
   // Στο mobile, αφαιρούμε επίσης: ai-integration-applications, seo-website-optimization, ux-ui-design
@@ -63,7 +65,7 @@ const Services: React.FC = () => {
     <section
       id="services"
       className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen"
-      aria-label="Υπηρεσίες"
+      aria-label={t.services.title}
     >
       {/* Animated background shapes: ΜΟΝΟ σε desktop */}
       {!isMobile && (
@@ -81,9 +83,9 @@ const Services: React.FC = () => {
         </>
       )}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12">Υπηρεσίες</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 text-center mb-12">{t.services.title}</h2>
         <p className="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-16">
-          Εξειδικευμένες λύσεις για επιχειρήσεις και επαγγελματίες που απαιτούν κορυφαία ποιότητα, τεχνογνωσία και σύγχρονο design.
+          {t.services.subtitle}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {filteredServices.map((service, i) => {
@@ -103,7 +105,7 @@ const Services: React.FC = () => {
                 </h3>
                 <p className="text-gray-600 mb-6">{service.shortDescription[language]}</p>
                 <span className="inline-flex items-center gap-1 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-base group-hover:scale-105 group-hover:shadow-xl">
-                  Περισσότερα →
+                  {t.services.more} →
                 </span>
                 {/* Animated border effect: ΜΟΝΟ σε desktop */}
                 {!isMobile && (

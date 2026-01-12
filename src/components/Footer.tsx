@@ -84,9 +84,9 @@ const Footer: React.FC = () => {
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">DevTaskHub</h3>
             <p className="text-gray-300 leading-relaxed mb-4">{t.footer.description}</p>
             <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span>Made with</span>
+              <span>{t.footer.madeWith}</span>
               <span>❤️</span>
-              <span>in Thessaloniki</span>
+              <span>{t.footer.inThessaloniki}</span>
             </div>
           </div>
           {/* Services Quick Links */}
@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
                 onClick={() => navigate('/terms')}
                 className="text-blue-300 hover:text-blue-100 underline font-medium transition-colors duration-300 text-base px-0 py-0 bg-transparent shadow-none rounded-none focus:outline-none"
               >
-                Όροι & Προϋποθέσεις
+                {t.footer.terms}
               </button>
             </div>
           </div>

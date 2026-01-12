@@ -12,36 +12,11 @@ const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const isMobile = useIsMobile();
 
-  const slides = [
-    {
-      title: language === 'el' ? 'Κατασκευή Μοντέρνων Ιστοσελίδων' : 'Modern Website Development',
-      subtitle: language === 'el' 
-        ? 'Δημιουργούμε responsive ιστοσελίδες με εστίαση στην απόδοση και UX' 
-        : 'We create responsive websites with focus on performance and UX',
-      gradient: 'from-blue-600 via-purple-600 to-teal-600',
-      bgPattern: 'opacity-20'
-    },
-    {
-      title: language === 'el' 
-        ? 'Mobile Εφαρμογές για Επιχειρήσεις & Startups' 
-        : 'Mobile-first Apps for Businesses & Startups',
-      subtitle: language === 'el' 
-        ? 'Native και cross-platform λύσεις για Android & iOS' 
-        : 'Native and cross-platform solutions for Android & iOS',
-      gradient: 'from-emerald-600 via-blue-600 to-purple-600',
-      bgPattern: 'opacity-30'
-    },
-    {
-      title: language === 'el' 
-        ? 'Η ομάδα προγραμματιστών σας' 
-        : 'Your development team',
-      subtitle: language === 'el' 
-        ? 'AI λύσεις, e-commerce και παιχνίδια που εντυπωσιάζουν' 
-        : 'AI solutions, e-commerce and games that impress',
-      gradient: 'from-blue-700 via-purple-700 to-teal-500',
-      bgPattern: 'opacity-25'
-    }
-  ];
+  const slides = t.hero.slides.map((slide, index) => ({
+    ...slide,
+    gradient: index === 0 ? 'from-blue-600 via-purple-600 to-teal-600' : index === 1 ? 'from-emerald-600 via-blue-600 to-purple-600' : 'from-blue-700 via-purple-700 to-teal-500',
+    bgPattern: index === 0 ? 'opacity-20' : index === 1 ? 'opacity-30' : 'opacity-25'
+  }));
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -207,10 +182,11 @@ const Hero: React.FC = () => {
               className="mb-8"
             >
               <motion.h1
-                className="text-3xl sm:text-4xl font-bold mb-4 leading-tight text-shadow-luxury"
+                className="text-3xl sm:text-4xl font-bold mb-4 leading-tight text-shadow-luxury break-words overflow-wrap-anywhere"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}
               >
                 {slides[currentSlide].title}
               </motion.h1>
@@ -333,10 +309,11 @@ const Hero: React.FC = () => {
                 className="mb-8"
               >
                 <motion.h1 
-                  className={`text-4xl sm:text-5xl ${currentSlide === 2 ? 'lg:text-5xl xl:text-6xl' : 'lg:text-7xl'} font-bold mb-6 leading-tight text-shadow-premium tracking-luxury`}
+                  className={`text-4xl sm:text-5xl ${currentSlide === 2 ? 'lg:text-5xl xl:text-6xl' : 'lg:text-7xl'} font-bold mb-6 leading-tight text-shadow-premium tracking-luxury break-words overflow-wrap-anywhere`}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
+                  style={{ wordBreak: 'break-word', overflowWrap: 'anywhere' }}
                 >
                   {slides[currentSlide].title}
                 </motion.h1>

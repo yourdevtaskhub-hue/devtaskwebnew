@@ -11,9 +11,9 @@ const About: React.FC = () => {
   const isMobile = useIsMobile();
 
   const stats = [
-    { icon: Award, value: '50+', label: language === 'el' ? 'Επιτυχημένα Projects' : 'Successful Projects' },
-    { icon: Target, value: '3+', label: language === 'el' ? 'Χρόνια Εμπειρίας' : 'Years Experience' },
-    { icon: Zap, value: '24/7', label: language === 'el' ? 'Υποστήριξη' : 'Support' },
+    { icon: Award, value: '50+', label: t.about.stats.projects },
+    { icon: Target, value: '3+', label: t.about.stats.experience },
+    { icon: Zap, value: '24/7', label: t.about.stats.support },
   ];
 
   return (

@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 import { FaApple, FaAndroid, FaReact, FaCloud, FaRocket, FaLock, FaPalette, FaBolt, FaStore, FaHeartbeat, FaGraduationCap, FaTruck, FaUsers, FaCode, FaSearch, FaPaintBrush, FaSyncAlt } from 'react-icons/fa';
 import { SiFlutter, SiKotlin, SiSwift, SiFirebase, SiSupabase } from 'react-icons/si';
 import Lottie from 'lottie-react';
@@ -102,6 +104,8 @@ const useCases = [
 ];
 
 export default function MobileAppDevelopmentPage() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [fullscreenAlt, setFullscreenAlt] = useState<string>('');
   const [modalImg, setModalImg] = useState<string | null>(null);
@@ -150,10 +154,10 @@ export default function MobileAppDevelopmentPage() {
           {/* Left: Text */}
           <motion.div className="flex-1 flex flex-col items-start md:items-start text-left" initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <motion.h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight bg-gradient-to-r from-blue-700 to-purple-600 bg-clip-text text-transparent" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} style={{ fontFamily: "'IBM Plex Sans', 'Inter', sans-serif" }}>
-              Κατασκευή Mobile Εφαρμογών για Επιχειρήσεις & Startups
+              {t.services.pages.mobileAppDevelopment.hero.title}
             </motion.h1>
             <motion.p className="text-lg md:text-2xl text-gray-700 mb-10 font-medium max-w-2xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}>
-              Από την ιδέα στο App Store & Google Play. Εξειδίκευση σε iOS, Android & cross-platform λύσεις με έμφαση στην ταχύτητα, το design και την ασφάλεια.
+              {t.services.pages.mobileAppDevelopment.hero.subtitle}
             </motion.p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.button
@@ -163,7 +167,7 @@ export default function MobileAppDevelopmentPage() {
                 onMouseEnter={() => playSound(hoverSfx)}
                 onClick={() => { window.location.href = '/contactme'; }}
               >
-                <span className="relative z-10">Ζητήστε Προσφορά</span>
+                <span className="relative z-10">{t.services.pages.mobileAppDevelopment.hero.cta}</span>
               </motion.button>
             </div>
           </motion.div>
@@ -200,9 +204,9 @@ export default function MobileAppDevelopmentPage() {
         <div className="absolute -top-16 -left-16 w-60 h-60 bg-gradient-to-br from-blue-200 via-purple-200 to-white opacity-40 rounded-full blur-3xl z-0"></div>
         <div className="absolute bottom-0 right-0 w-40 h-40 bg-gradient-to-tr from-purple-200 via-blue-100 to-white opacity-30 rounded-full blur-2xl z-0"></div>
         <div className="relative z-10 bg-white/70 backdrop-blur-2xl rounded-3xl shadow-2xl border border-blue-100/60 p-8 flex flex-col items-center gap-8 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-500 to-blue-400 bg-clip-text text-transparent mb-2 drop-shadow-lg text-center">Τύποι Mobile Εφαρμογών</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-500 to-blue-400 bg-clip-text text-transparent mb-2 drop-shadow-lg text-center">{t.services.pages.mobileAppDevelopment.appTypes.title}</h2>
           <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mb-6 mx-auto animate-pulse"></div>
-          <p className="text-base text-gray-700 mb-6 text-center max-w-lg">Διάλεξε τον τύπο εφαρμογής που ταιριάζει καλύτερα στις ανάγκες σου. Κάθε επιλογή έχει τα δικά της πλεονεκτήματα και είναι ιδανική για διαφορετικές περιπτώσεις.</p>
+          <p className="text-base text-gray-700 mb-6 text-center max-w-lg">{t.services.pages.mobileAppDevelopment.appTypes.description}</p>
           <div className="flex flex-col gap-8 w-full">
             {/* iPhone & iPad Apps */}
             <div className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-blue-200/60 p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-3xl hover:scale-105 hover:-rotate-1 focus:outline-none focus:ring-4 focus:ring-blue-100 relative overflow-hidden w-full">
@@ -210,10 +214,10 @@ export default function MobileAppDevelopmentPage() {
               <div className="relative z-10 mb-3 flex items-center justify-center w-14 h-14 rounded-full bg-blue-200 shadow-inner border-2 border-blue-300">
                 <FaApple className="text-blue-700 text-3xl" />
               </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-1 relative z-10">iPhone & iPad Apps</h3>
-              <span className="inline-block px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs font-semibold mb-2 relative z-10">Best for Apple users</span>
-              <p className="text-gray-700 text-base mb-1 relative z-10">Ιδανικό αν το κοινό σου χρησιμοποιεί κυρίως iPhone ή iPad. Προσφέρει την πιο ομαλή εμπειρία και αξιοποιεί πλήρως τις δυνατότητες της Apple.</p>
-              <p className="text-gray-500 text-sm relative z-10">Εύκολη διανομή μέσω App Store.</p>
+              <h3 className="text-lg font-bold text-blue-900 mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.ios.title}</h3>
+              <span className="inline-block px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs font-semibold mb-2 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.ios.badge}</span>
+              <p className="text-gray-700 text-base mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.ios.description}</p>
+              <p className="text-gray-500 text-sm relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.ios.detail}</p>
             </div>
             {/* Android Apps */}
             <div className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-green-200/60 p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-3xl hover:scale-105 hover:rotate-1 focus:outline-none focus:ring-4 focus:ring-green-100 relative overflow-hidden w-full">
@@ -221,10 +225,10 @@ export default function MobileAppDevelopmentPage() {
               <div className="relative z-10 mb-3 flex items-center justify-center w-14 h-14 rounded-full bg-green-200 shadow-inner border-2 border-green-300">
                 <FaAndroid className="text-green-700 text-3xl" />
               </div>
-              <h3 className="text-lg font-bold text-green-900 mb-1 relative z-10">Android Apps</h3>
-              <span className="inline-block px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-semibold mb-2 relative z-10">Best for Android users</span>
-              <p className="text-gray-700 text-base mb-1 relative z-10">Η καλύτερη επιλογή αν το κοινό σου έχει Android συσκευές. Προσφέρει εξαιρετική απόδοση και εμπειρία χρήστη σε όλα τα Android κινητά και tablets.</p>
-              <p className="text-gray-500 text-sm relative z-10">Διανομή μέσω Google Play Store.</p>
+              <h3 className="text-lg font-bold text-green-900 mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.android.title}</h3>
+              <span className="inline-block px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-semibold mb-2 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.android.badge}</span>
+              <p className="text-gray-700 text-base mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.android.description}</p>
+              <p className="text-gray-500 text-sm relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.android.detail}</p>
             </div>
             {/* Progressive Web Apps */}
             <div className="group bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-purple-200/60 p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-3xl hover:scale-105 hover:-rotate-1 focus:outline-none focus:ring-4 focus:ring-purple-100 relative overflow-hidden w-full">
@@ -232,10 +236,10 @@ export default function MobileAppDevelopmentPage() {
               <div className="relative z-10 mb-3 flex items-center justify-center w-14 h-14 rounded-full bg-purple-200 shadow-inner border-2 border-purple-300">
                 <FaCloud className="text-purple-700 text-3xl" />
               </div>
-              <h3 className="text-lg font-bold text-purple-900 mb-1 relative z-10">Progressive Web Apps</h3>
-              <span className="inline-block px-2 py-1 rounded bg-purple-100 text-purple-700 text-xs font-semibold mb-2 relative z-10">Best for all devices</span>
-              <p className="text-gray-700 text-base mb-1 relative z-10">Λειτουργεί σε κάθε κινητό ή υπολογιστή, χωρίς εγκατάσταση. Ιδανικό για απλή πρόσβαση και χαμηλό κόστος ανάπτυξης.</p>
-              <p className="text-gray-500 text-sm relative z-10">Ανοίγει από browser, προστίθεται στην αρχική οθόνη.</p>
+              <h3 className="text-lg font-bold text-purple-900 mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.pwa.title}</h3>
+              <span className="inline-block px-2 py-1 rounded bg-purple-100 text-purple-700 text-xs font-semibold mb-2 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.pwa.badge}</span>
+              <p className="text-gray-700 text-base mb-1 relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.pwa.description}</p>
+              <p className="text-gray-500 text-sm relative z-10">{t.services.pages.mobileAppDevelopment.appTypes.cards.pwa.detail}</p>
             </div>
           </div>
         </div>
@@ -243,7 +247,7 @@ export default function MobileAppDevelopmentPage() {
 
       {/* Tools & Technologies */}
       <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Εργαλεία & Τεχνολογίες</motion.h2>
+        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.tools.title}</motion.h2>
         <motion.div className="flex flex-wrap justify-center gap-10 mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
           {tools.map((t, idx) => (
             <motion.div key={t.name} className="flex flex-col items-center gap-2 bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-blue-100/40 group" initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.1, boxShadow: '0 0 24px 0 #a5b4fc' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => playSound(clickSfx)}>{t.icon}<span className="text-base text-blue-900 font-semibold mt-2">{t.name}</span></motion.div>
@@ -257,63 +261,63 @@ export default function MobileAppDevelopmentPage() {
 
       {/* UI/UX Samples Section */}
       <section id="uiux-samples" className="max-w-7xl mx-auto py-24 px-2 sm:px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Δείγματα UI/UX Εφαρμογών</h2>
-        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">Δείτε μερικά παραδείγματα σύγχρονου UI/UX design για εφαρμογές που καλύπτουν διαφορετικές ανάγκες και κλάδους. Κάθε δείγμα συνοδεύεται από περιγραφή και το αντίστοιχο γραφικό.</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.uiSamples.title}</h2>
+        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">{t.services.pages.mobileAppDevelopment.uiSamples.description}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {/* Finance App (UIsamples) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIsamples} alt="Finance App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIsamples)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-900 mb-2">Εφαρμογή Οικονομικών</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Σύγχρονο mobile UI για παρακολούθηση προσωπικών οικονομικών. Περιλαμβάνει dashboard με γραφήματα, λίστα συναλλαγών, μπάρα προόδου προϋπολογισμού και κουμπί για προσθήκη εξόδων. Καθαρό light θέμα με τόνους teal και λευκού.</p>
+              <h4 className="text-xl font-bold text-blue-900 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.finance.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.finance.description}</p>
             </div>
           </div>
           {/* Food Delivery App (UIrestaurant) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-orange-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIrestaurant} alt="Food Delivery App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIrestaurant)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-orange-700 mb-2">Εφαρμογή Παραγγελίας Φαγητού</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Φιλικό UI για παραγγελία φαγητού. Αρχική με εστιατόρια, δημοφιλή πιάτα, αναζήτηση και φίλτρα. Ζωντανά χρώματα (πορτοκαλί, κόκκινο), καθαρές εικόνες φαγητού και μοντέρνα εικονίδια.</p>
+              <h4 className="text-xl font-bold text-orange-700 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.food.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.food.description}</p>
             </div>
           </div>
           {/* Travel Planner App (UItravellerapp) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UItravellerapp} alt="Travel Planner App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UItravellerapp)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-900 mb-2">Εφαρμογή Ταξιδιωτικού Πλάνου</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Όμορφο UI για ταξιδιωτικό πλάνο. Επισκόπηση ταξιδιού, κάρτες ημερήσιου προγράμματος, ενσωμάτωση πρόγνωσης καιρού και χάρτες. Μινιμαλιστικό στυλ με μπλε και μπεζ τόνους.</p>
+              <h4 className="text-xl font-bold text-blue-900 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.travel.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.travel.description}</p>
             </div>
           </div>
           {/* Crypto Wallet App (UIcryptowallet) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-200/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIcryptowallet} alt="Crypto Wallet App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIcryptowallet)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-800 mb-2">Crypto Wallet App</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Φουτουριστικό UI για crypto wallet. Dashboard υπολοίπου, πρόσφατες συναλλαγές, γραφήματα αξίας νομισμάτων και διασύνδεση αποστολής/λήψης. Dark θέμα με ηλεκτρικό μπλε και μοντέρνα τυπογραφία.</p>
+              <h4 className="text-xl font-bold text-blue-800 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.crypto.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.crypto.description}</p>
             </div>
           </div>
           {/* Smart Home Control App (UIsmarthome) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-purple-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIsmarthome} alt="Smart Home App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIsmarthome)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-purple-800 mb-2">Εφαρμογή Έξυπνου Σπιτιού</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Υψηλής τεχνολογίας UI για έλεγχο smart home. Διακόπτες για φώτα, θερμοκρασία, κάμερες και συσκευές. Sleek gradients, glassmorphism και εικονίδια για εύκολο χειρισμό.</p>
+              <h4 className="text-xl font-bold text-purple-800 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.smartHome.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.smartHome.description}</p>
             </div>
           </div>
           {/* Dating App (UIDatingApp) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-pink-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIDatingApp} alt="Dating App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIDatingApp)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-pink-700 mb-2">Εφαρμογή Γνωριμιών</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Στιλάτο UI για dating app. Κάρτες προφίλ με swipe, feed, μηνύματα και φίλτρα. Παιχνιδιάρικα ροζ, μωβ και λευκά με στρογγυλεμένα στοιχεία.</p>
+              <h4 className="text-xl font-bold text-pink-700 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.dating.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.dating.description}</p>
             </div>
           </div>
           {/* Book Reading App (UIBookReadingApp) */}
           <div className="bg-white/90 rounded-3xl shadow-xl border border-yellow-100/40 flex flex-col items-center text-center overflow-hidden">
             <img src={UIBookReadingApp} alt="Book Reading App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIBookReadingApp)} />
             <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-yellow-800 mb-2">Εφαρμογή Ανάγνωσης Βιβλίων</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Ζεστό και κομψό UI για eBook reader. Βιβλιοθήκη, πρόοδος ανάγνωσης, ρυθμίσεις γραμματοσειράς και night mode. Θερμοί τόνοι (κρεμ, καφέ) και serif γραμματοσειρές.</p>
+              <h4 className="text-xl font-bold text-yellow-800 mb-2">{t.services.pages.mobileAppDevelopment.uiSamples.apps.book.title}</h4>
+              <p className="text-gray-600 mb-4 text-base leading-relaxed">{t.services.pages.mobileAppDevelopment.uiSamples.apps.book.description}</p>
             </div>
           </div>
         </div>
@@ -323,7 +327,7 @@ export default function MobileAppDevelopmentPage() {
             <div className="relative max-w-full max-h-full flex items-center justify-center" onClick={e => e.stopPropagation()}>
               <button
                 className="absolute top-2 right-2 bg-white/80 hover:bg-white text-gray-900 rounded-full p-2 shadow-lg text-2xl z-10 focus:outline-none"
-                aria-label="Κλείσιμο"
+                aria-label={t.services.pages.mobileAppDevelopment.uiSamples.modalClose}
                 onClick={() => setModalImg(null)}
               >✕</button>
               <img
@@ -340,44 +344,43 @@ export default function MobileAppDevelopmentPage() {
       {/* App Development Process */}
       <section className="max-w-4xl mx-auto py-24 px-4">
         <div className="relative bg-gradient-to-br from-blue-100 via-white to-purple-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-100/40 p-10 flex flex-col items-center gap-10 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Διαδικασία Ανάπτυξης Εφαρμογής</h2>
-          <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">Ακολουθούμε μια δομημένη διαδικασία για να διασφαλίσουμε την επιτυχία κάθε mobile app.</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.process.title}</h2>
+          <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">{t.services.pages.mobileAppDevelopment.process.description}</p>
           {/* Timeline */}
           <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
-            {[
-              { icon: <FaPalette className="text-blue-400 text-2xl" />, title: 'Ανακάλυψη Ιδέας', desc: 'Συζήτηση, ανάλυση, στόχοι.' },
-              { icon: <FaPalette className="text-pink-400 text-2xl" />, title: 'UI/UX Design', desc: 'Wireframes, πρωτότυπα, design.' },
-              { icon: <FaCode className="text-purple-400 text-2xl" />, title: 'Υλοποίηση', desc: 'Development, testing, βελτιστοποίηση.' },
-              { icon: <FaRocket className="text-yellow-400 text-2xl" />, title: 'Λανσάρισμα', desc: 'App Store, Google Play, υποστήριξη.' },
-              { icon: <FaCloud className="text-blue-400 text-2xl" />, title: 'Υποστήριξη', desc: 'Συνεχής βελτίωση & updates.' },
-            ].map((step, idx, arr) => (
-              <div key={step.title} className="flex items-center w-full mb-8 last:mb-0">
-                <div className="flex flex-col items-center mr-6">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
-                    {idx + 1}
+            {t.services.pages.mobileAppDevelopment.process.steps.map((stepItem, idx) => {
+              const icons = [<FaPalette className="text-blue-400 text-2xl" />, <FaPalette className="text-pink-400 text-2xl" />, <FaCode className="text-purple-400 text-2xl" />, <FaRocket className="text-yellow-400 text-2xl" />, <FaCloud className="text-blue-400 text-2xl" />];
+              const step = { icon: icons[idx], title: stepItem.title, desc: stepItem.desc };
+              const arr = t.services.pages.mobileAppDevelopment.process.steps;
+              return (
+                <div key={stepItem.title} className="flex items-center w-full mb-8 last:mb-0">
+                  <div className="flex flex-col items-center mr-6">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
+                      {idx + 1}
+                    </div>
+                    {idx < arr.length - 1 && (
+                      <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
+                    )}
                   </div>
-                  {idx < arr.length - 1 && (
-                    <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
-                  )}
+                  <div className="flex-1 bg-white/80 rounded-2xl shadow-md border border-blue-100/40 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
+                      {step.icon}
+                    </div>
+                    <div>
+                      <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
+                      <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1 bg-white/80 rounded-2xl shadow-md border border-blue-100/40 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
-                    {step.icon}
-                  </div>
-                  <div>
-                    <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
-                    <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Portfolio Showcase */}
       <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Δείγματα Εργασίας Εφαρμογών</motion.h2>
+        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.portfolio.title}</motion.h2>
         
         {/* GetFitSKG App Showcase */}
         <motion.div 
@@ -476,7 +479,7 @@ export default function MobileAppDevelopmentPage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <FaRocket className="text-xl" />
-                Δείτε την Εφαρμογή
+                {t.services.pages.mobileAppDevelopment.portfolio.viewApp}
               </motion.a>
             </motion.div>
 

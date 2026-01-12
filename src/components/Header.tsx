@@ -115,7 +115,9 @@ const Header: React.FC = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              {Object.entries(t.nav).map(([key, label], index) => {
+              {Object.entries(t.nav)
+                .filter(([key]) => key !== 'mobileAppSamples') // Αφαιρούμε το mobileAppSamples από το loop
+                .map(([key, label], index) => {
                 // Προσθήκη του "Δείγματα App" μετά το portfolio
                 if (key === 'portfolio') {
                   return (
@@ -136,7 +138,7 @@ const Header: React.FC = () => {
                           transition={{ duration: 0.3 }}
                         />
                       </motion.button>
-                      {/* Δείγματα App Button */}
+                      {/* Mobile App Samples Button */}
                       <motion.button
                         onClick={() => scrollToSection('getfit-app-showcase')}
                         className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-all duration-300 relative group"
@@ -145,7 +147,7 @@ const Header: React.FC = () => {
                         transition={{ duration: 0.5, delay: (index + 0.5) * 0.1 }}
                         whileHover={{ scale: 1.05 }}
                       >
-                        Δείγματα Mobile App
+                        {t.nav.mobileAppSamples}
                         <motion.div
                           className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 origin-left"
                           initial={{ scaleX: 0 }}
@@ -310,7 +312,9 @@ const Header: React.FC = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                {Object.entries(t.nav).map(([key, label], index) => {
+                {Object.entries(t.nav)
+                  .filter(([key]) => key !== 'mobileAppSamples') // Αφαιρούμε το mobileAppSamples από το loop
+                  .map(([key, label], index) => {
                   // Προσθήκη του "Δείγματα App" μετά το portfolio στο mobile menu
                   if (key === 'portfolio') {
                     return (
@@ -325,7 +329,7 @@ const Header: React.FC = () => {
                         >
                           {label}
                         </motion.button>
-                        {/* Δείγματα App Button - Mobile */}
+                        {/* Mobile App Samples Button - Mobile */}
                         <motion.button
                           onClick={() => scrollToSection('getfit-app-showcase')}
                           className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 block px-3 py-3 text-base font-medium w-full text-left transition-all duration-300 rounded-lg"
@@ -334,7 +338,7 @@ const Header: React.FC = () => {
                           transition={{ duration: 0.3, delay: (index + 0.5) * 0.1 }}
                           whileHover={{ x: 5 }}
                         >
-                          Δείγματα Mobile App
+                          {t.nav.mobileAppSamples}
                         </motion.button>
                       </React.Fragment>
                     );

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaMobileAlt, FaDesktop, FaFigma, FaUserFriends, FaRegObjectGroup, FaRegEdit, FaSyncAlt, FaCheckCircle, FaStar, FaChevronLeft, FaChevronRight, FaUserCircle, FaLayerGroup, FaRegEye } from 'react-icons/fa';
+import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 // import uiLottie from '../assets/lottie-ui.json';
 const uiLottie = {};
 const hoverSfx = '';
@@ -37,46 +39,70 @@ function playSound(src: string) {
   audio.play();
 }
 
-const services = [
-  { icon: <FaDesktop className="text-blue-500 text-3xl" />, title: 'Σχεδιασμός Interfaces για Web & Mobile', desc: 'UI για ιστοσελίδες, εφαρμογές, SaaS, mobile.' },
-  { icon: <FaFigma className="text-pink-500 text-3xl" />, title: 'Διαδραστικά Prototypes', desc: 'Figma, Adobe XD, clickable prototypes.' },
-  { icon: <FaRegObjectGroup className="text-purple-500 text-3xl" />, title: 'User Flows & Wireframing', desc: 'Διαγράμματα ροής, wireframes, αρχιτεκτονική.' },
-  { icon: <FaUserFriends className="text-green-500 text-3xl" />, title: 'UX Research & Personas', desc: 'Έρευνα χρηστών, personas, user journeys.' },
-  { icon: <FaRegEdit className="text-yellow-500 text-3xl" />, title: 'Βελτιστοποίηση Υφιστάμενων UI', desc: 'Redesign, usability audit, βελτιώσεις.' },
-  { icon: <FaSyncAlt className="text-cyan-500 text-3xl" />, title: 'Responsive Design', desc: 'Προσαρμογή για κάθε συσκευή & οθόνη.' },
-  { icon: <FaRegEye className="text-blue-400 text-3xl" />, title: 'Testing & Iteration', desc: 'A/B testing, feedback, συνεχής βελτίωση.' },
+// Icon arrays
+const serviceIcons = [
+  <FaDesktop className="text-blue-500 text-3xl" />,
+  <FaFigma className="text-pink-500 text-3xl" />,
+  <FaRegObjectGroup className="text-purple-500 text-3xl" />,
+  <FaUserFriends className="text-green-500 text-3xl" />,
+  <FaRegEdit className="text-yellow-500 text-3xl" />,
+  <FaSyncAlt className="text-cyan-500 text-3xl" />,
+  <FaRegEye className="text-blue-400 text-3xl" />,
 ];
 
-const methodology = [
-  { icon: <FaCheckCircle className="text-blue-500 text-2xl" />, title: 'Κατανόηση αναγκών', desc: 'Συζήτηση, στόχοι, ανάλυση.' },
-  { icon: <FaUserFriends className="text-green-500 text-2xl" />, title: 'Έρευνα Χρηστών', desc: 'Personas, user journeys, pain points.' },
-  { icon: <FaRegObjectGroup className="text-purple-500 text-2xl" />, title: 'Σχεδίαση Wireframes', desc: 'Δομή, flows, wireframes.' },
-  { icon: <FaLayerGroup className="text-pink-500 text-2xl" />, title: 'Δημιουργία UI με design system', desc: 'Στυλ, components, consistency.' },
-  { icon: <FaSyncAlt className="text-cyan-500 text-2xl" />, title: 'Προσαρμογή & Αξιολόγηση', desc: 'Testing, feedback, iteration.' },
+const methodologyIcons = [
+  <FaCheckCircle className="text-blue-500 text-2xl" />,
+  <FaUserFriends className="text-green-500 text-2xl" />,
+  <FaRegObjectGroup className="text-purple-500 text-2xl" />,
+  <FaLayerGroup className="text-pink-500 text-2xl" />,
+  <FaSyncAlt className="text-cyan-500 text-2xl" />,
 ];
 
-const gallery = [
-  { img: '/src/assets/ui2.png', title: 'Mobile App UI', desc: 'Σύγχρονο mobile interface.' },
-  { img: '/src/assets/ui3.jpg', title: 'Web Dashboard', desc: 'Διαδραστικό web dashboard.' },
-  { img: '/src/assets/UI.png', title: 'Responsive Layout', desc: 'UI για όλες τις συσκευές.' },
-];
-
-const testimonials = [
-  { quote: 'Το UI που σχεδίασε ήταν εντυπωσιακό και αύξησε το engagement των χρηστών μας.', name: 'Ελένη Μ.', avatar: '', rating: 5 },
-  { quote: 'Άψογη συνεργασία, προσοχή στη λεπτομέρεια και εξαιρετικό αποτέλεσμα.', name: 'Γιώργος Π.', avatar: '', rating: 5 },
+const sampleAppImages = [
+  UIsamples,
+  UIrestaurant,
+  UItravellerapp,
+  UIcryptowallet,
+  UIsmarthome,
+  UIDatingApp,
+  UIBookReadingApp,
 ];
 
 export default function UXUIDesignPage() {
+  const { language } = useLanguage();
+  const t = translations[language];
   const isMobile = useIsMobile();
   const [typed, setTyped] = useState('');
   const [currentGallery, setCurrentGallery] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   // ΝΕΟ: State για modal εικόνας
   const [modalImg, setModalImg] = useState<string | null>(null);
+
+  const services = useMemo(() =>
+    t.services.pages.uxUIDesign.services.items.map((item, idx) => ({
+      icon: serviceIcons[idx],
+      title: item.title,
+      desc: item.desc
+    })), [t]);
+
+  const methodology = useMemo(() =>
+    t.services.pages.uxUIDesign.methodology.items.map((item, idx) => ({
+      icon: methodologyIcons[idx],
+      title: item.title,
+      desc: item.desc
+    })), [t]);
+
+  const sampleApps = useMemo(() =>
+    t.services.pages.uxUIDesign.samples.apps.map((app, idx) => ({
+      img: sampleAppImages[idx],
+      title: app.title,
+      desc: app.desc
+    })), [t]);
+
   useEffect(() => { AOS.init({ duration: 900, once: true }); }, []);
   // Typing effect για το hero
   useEffect(() => {
-    const full = 'UX/UI Design';
+    const full = t.services.pages.uxUIDesign.hero.title;
     let i = 0;
     setTyped('');
     const interval = setInterval(() => {
@@ -85,7 +111,7 @@ export default function UXUIDesignPage() {
       if (i === full.length) clearInterval(interval);
     }, 60);
     return () => clearInterval(interval);
-  }, []);
+  }, [language, t]);
 
   // Κλείσιμο modal με Escape ή tap εκτός εικόνας
   useEffect(() => {
@@ -129,14 +155,14 @@ export default function UXUIDesignPage() {
         {/* Hero Content */}
         <div className="relative z-20 max-w-3xl mx-auto px-4 py-32 text-center flex flex-col items-center">
           <h1 className="text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg tracking-tight bg-gradient-to-r from-purple-700 to-blue-600 bg-clip-text text-transparent" style={{ fontFamily: "'IBM Plex Sans', 'Inter', sans-serif" }}>
-            UX/UI Design
+            {typed}
           </h1>
           <p className="text-xl md:text-2xl text-gray-700 mb-10 font-medium max-w-2xl mx-auto">
-            Σχεδιάζουμε φιλικά προς τον χρήστη και αποδοτικά interfaces με έμφαση στη χρηστικότητα και την εμπειρία.
+            {t.services.pages.uxUIDesign.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="inline-block px-12 py-5 bg-gradient-to-r from-purple-600 to-blue-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-purple-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-purple-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">Ζητήστε Προσφορά</span></button>
-            <button className="inline-block px-12 py-5 bg-gradient-to-r from-blue-400 to-purple-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" onClick={() => { document.getElementById('uiux-samples')?.scrollIntoView({ behavior: 'smooth' }); }}><span className="relative z-10">Δείτε Δείγματα</span></button>
+            <button className="inline-block px-12 py-5 bg-gradient-to-r from-purple-600 to-blue-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-purple-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-purple-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{t.services.pages.uxUIDesign.hero.cta}</span></button>
+            <button className="inline-block px-12 py-5 bg-gradient-to-r from-blue-400 to-purple-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden" onClick={() => { document.getElementById('uiux-samples')?.scrollIntoView({ behavior: 'smooth' }); }}><span className="relative z-10">{t.services.pages.uxUIDesign.hero.viewSamples}</span></button>
           </div>
         </div>
       </section>
@@ -170,7 +196,7 @@ export default function UXUIDesignPage() {
 
       {/* Μεθοδολογία / Ροή Εργασίας */}
       <section className="max-w-7xl mx-auto py-24 px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-purple-700 mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">Μεθοδολογία</h2>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-purple-700 mb-12 text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.uxUIDesign.methodology.title}</h2>
         <div className="flex flex-col md:flex-row justify-center items-center gap-10">
           {methodology.map((step, idx) => (
             <div key={step.title} className="flex flex-col items-center bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-purple-100/40 p-10 group hover:shadow-2xl transition-all duration-300 relative overflow-hidden min-w-[180px]">
@@ -187,65 +213,38 @@ export default function UXUIDesignPage() {
 
       {/* Trends & Inspiration */}
       <section id="uiux-samples" className="max-w-7xl mx-auto py-24 px-2 sm:px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">Δείγματα UI/UX Εφαρμογών</h2>
-        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">Δείτε μερικά παραδείγματα σύγχρονου UI/UX design για εφαρμογές που καλύπτουν διαφορετικές ανάγκες και κλάδους. Κάθε δείγμα συνοδεύεται από περιγραφή και το αντίστοιχο γραφικό.</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.uxUIDesign.samples.title}</h2>
+        <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">{t.services.pages.uxUIDesign.samples.description}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-          {/* Finance App (UIsamples) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIsamples} alt="Finance App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIsamples)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-900 mb-2">Εφαρμογή Οικονομικών</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Σύγχρονο mobile UI για παρακολούθηση προσωπικών οικονομικών. Περιλαμβάνει dashboard με γραφήματα, λίστα συναλλαγών, μπάρα προόδου προϋπολογισμού και κουμπί για προσθήκη εξόδων. Καθαρό light θέμα με τόνους teal και λευκού.</p>
-            </div>
-          </div>
-          {/* Food Delivery App (UIrestaurant) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-orange-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIrestaurant} alt="Food Delivery App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIrestaurant)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-orange-700 mb-2">Εφαρμογή Παραγγελίας Φαγητού</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Φιλικό UI για παραγγελία φαγητού. Αρχική με εστιατόρια, δημοφιλή πιάτα, αναζήτηση και φίλτρα. Ζωντανά χρώματα (πορτοκαλί, κόκκινο), καθαρές εικόνες φαγητού και μοντέρνα εικονίδια.</p>
-            </div>
-          </div>
-          {/* Travel Planner App (UItravellerapp) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UItravellerapp} alt="Travel Planner App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UItravellerapp)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-900 mb-2">Εφαρμογή Ταξιδιωτικού Πλάνου</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Όμορφο UI για ταξιδιωτικό πλάνο. Επισκόπηση ταξιδιού, κάρτες ημερήσιου προγράμματος, ενσωμάτωση πρόγνωσης καιρού και χάρτες. Μινιμαλιστικό στυλ με μπλε και μπεζ τόνους.</p>
-            </div>
-          </div>
-          {/* Crypto Wallet App (UIcryptowallet) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-blue-200/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIcryptowallet} alt="Crypto Wallet App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIcryptowallet)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-blue-800 mb-2">Crypto Wallet App</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Φουτουριστικό UI για crypto wallet. Dashboard υπολοίπου, πρόσφατες συναλλαγές, γραφήματα αξίας νομισμάτων και διασύνδεση αποστολής/λήψης. Dark θέμα με ηλεκτρικό μπλε και μοντέρνα τυπογραφία.</p>
-            </div>
-          </div>
-          {/* Smart Home Control App (UIsmarthome) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-purple-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIsmarthome} alt="Smart Home App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIsmarthome)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-purple-800 mb-2">Εφαρμογή Έξυπνου Σπιτιού</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Υψηλής τεχνολογίας UI για έλεγχο smart home. Διακόπτες για φώτα, θερμοκρασία, κάμερες και συσκευές. Sleek gradients, glassmorphism και εικονίδια για εύκολο χειρισμό.</p>
-            </div>
-          </div>
-          {/* Dating App (UIDatingApp) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-pink-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIDatingApp} alt="Dating App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIDatingApp)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-pink-700 mb-2">Εφαρμογή Γνωριμιών</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Στιλάτο UI για dating app. Κάρτες προφίλ με swipe, feed, μηνύματα και φίλτρα. Παιχνιδιάρικα ροζ, μωβ και λευκά με στρογγυλεμένα στοιχεία.</p>
-            </div>
-          </div>
-          {/* Book Reading App (UIBookReadingApp) */}
-          <div className="bg-white/90 rounded-3xl shadow-xl border border-yellow-100/40 flex flex-col items-center text-center overflow-hidden">
-            <img src={UIBookReadingApp} alt="Book Reading App" className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(UIBookReadingApp)} />
-            <div className="p-6 md:p-8 flex flex-col flex-1">
-              <h4 className="text-xl font-bold text-yellow-800 mb-2">Εφαρμογή Ανάγνωσης Βιβλίων</h4>
-              <p className="text-gray-600 mb-4 text-base leading-relaxed">Ζεστό και κομψό UI για eBook reader. Βιβλιοθήκη, πρόοδος ανάγνωσης, ρυθμίσεις γραμματοσειράς και night mode. Θερμοί τόνοι (κρεμ, καφέ) και serif γραμματοσειρές.</p>
-            </div>
-          </div>
+          {sampleApps.map((app, idx) => {
+            const borderColors = [
+              'border-blue-100/40',
+              'border-orange-100/40',
+              'border-blue-100/40',
+              'border-blue-200/40',
+              'border-purple-100/40',
+              'border-pink-100/40',
+              'border-yellow-100/40'
+            ];
+            const textColors = [
+              'text-blue-900',
+              'text-orange-700',
+              'text-blue-900',
+              'text-blue-800',
+              'text-purple-800',
+              'text-pink-700',
+              'text-yellow-800'
+            ];
+            return (
+              <div key={idx} className={`bg-white/90 rounded-3xl shadow-xl border ${borderColors[idx]} flex flex-col items-center text-center overflow-hidden`}>
+                <img src={app.img} alt={app.title} className="w-full h-56 object-cover object-top cursor-pointer transition-transform duration-200 hover:scale-105" onClick={() => setModalImg(app.img)} />
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <h4 className={`text-xl font-bold ${textColors[idx]} mb-2`}>{app.title}</h4>
+                  <p className="text-gray-600 mb-4 text-base leading-relaxed">{app.desc}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
         {/* Modal για full size εικόνα */}
         {modalImg && (
@@ -253,7 +252,7 @@ export default function UXUIDesignPage() {
             <div className="relative max-w-full max-h-full flex items-center justify-center" onClick={e => e.stopPropagation()}>
               <button
                 className="absolute top-2 right-2 bg-white/80 hover:bg-white text-gray-900 rounded-full p-2 shadow-lg text-2xl z-10 focus:outline-none"
-                aria-label="Κλείσιμο"
+                aria-label={t.services.pages.uxUIDesign.samples.closeModal}
                 onClick={() => setModalImg(null)}
               >✕</button>
               <img
@@ -270,8 +269,8 @@ export default function UXUIDesignPage() {
       {/* Τελικό CTA */}
       <section className="max-w-7xl mx-auto py-24 px-4 flex flex-col items-center text-center">
         <div className="relative bg-gradient-to-br from-purple-100 via-white to-blue-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-purple-100/40 p-12 flex flex-col items-center">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-purple-900 mb-6 tracking-tight">Θέλετε να εντυπωσιάσετε τους χρήστες σας με άψογο design;</h2>
-          <button className="inline-block px-12 py-5 bg-gradient-to-r from-purple-600 to-blue-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-purple-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-purple-400 animate-fade-in flex items-center gap-2 relative overflow-hidden mt-6" onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">Ζητήστε Δωρεάν Συμβουλευτική</span></button>
+          <h2 className="text-3xl md:text-4xl font-extrabold text-purple-900 mb-6 tracking-tight">{t.services.pages.uxUIDesign.finalCta.title}</h2>
+          <button className="inline-block px-12 py-5 bg-gradient-to-r from-purple-600 to-blue-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-purple-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-purple-400 animate-fade-in flex items-center gap-2 relative overflow-hidden mt-6" onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{t.services.pages.uxUIDesign.finalCta.button}</span></button>
         </div>
       </section>
     </div>

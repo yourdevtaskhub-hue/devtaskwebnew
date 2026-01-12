@@ -40,15 +40,15 @@ const Contact: React.FC = () => {
     e.preventDefault();
     if (!validate()) return;
     // Δημιουργώ το mailto link
-    const subject = encodeURIComponent(formData.subject || 'Επικοινωνία μέσω DevTaskHub');
-    const serviceText = formData.service ? `Υπηρεσία: ${formData.service}\n` : '';
-    const body = encodeURIComponent(`Όνομα: ${formData.name}\nEmail: ${formData.email}\n${serviceText}\n${formData.message}`);
+    const subject = encodeURIComponent(formData.subject || t.contact.mailtoSubject);
+    const serviceText = formData.service ? `${t.contact.form.service}: ${formData.service}\n` : '';
+    const body = encodeURIComponent(`${t.contact.form.name}: ${formData.name}\n${t.contact.form.email}: ${formData.email}\n${serviceText}\n${formData.message}`);
     window.location.href = `mailto:Devtaskhub@gmail.com?subject=${subject}&body=${body}`;
   };
 
   const handleCopy = (value: string) => {
     navigator.clipboard.writeText(value);
-    toast.info(language === 'el' ? 'Το email αντιγράφηκε!' : 'Email copied!');
+    toast.info(t.contact.emailCopied);
   };
 
   const contactInfo = [
@@ -100,10 +100,9 @@ const Contact: React.FC = () => {
         <div className="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 shadow-lg mb-2 animate-bounce-slow">
           <FaEnvelope className="text-white text-4xl drop-shadow" />
         </div>
-        <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-700 to-purple-600 bg-clip-text text-transparent mb-2">Επικοινωνία</h2>
-        <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-          Είστε έτοιμοι να ξεκινήσουμε το επόμενο project σας ή έχετε απορίες;<br />
-          Συμπληρώστε τη φόρμα ή επικοινωνήστε απευθείας μαζί μας για άμεση ανταπόκριση και τεχνική αξιοπιστία.
+        <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-blue-700 to-purple-600 bg-clip-text text-transparent mb-2">{t.contact.title}</h2>
+        <p className="text-lg text-gray-700 max-w-2xl mx-auto whitespace-pre-line">
+          {t.contact.description}
         </p>
       </div>
     </motion.div>
@@ -129,10 +128,10 @@ const Contact: React.FC = () => {
         viewport={{ once: true }}
         autoComplete="off"
       >
-        {/* Όνομα */}
+        {/* Name */}
         <div className="relative">
           <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-            Όνομα <span className="text-red-500">*</span>
+            {t.contact.form.nameLabel} <span className="text-red-500">{t.contact.form.required}</span>
           </label>
           <input
                 type="text"
@@ -142,15 +141,15 @@ const Contact: React.FC = () => {
                 onChange={handleChange}
                 required
             className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white ${errors.name ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-gray-300'}`}
-            placeholder="Εισάγετε το όνομά σας"
+            placeholder={t.contact.form.namePlaceholder}
             autoComplete="off"
           />
-          {errors.name && <span className="text-xs text-red-500 mt-1 block">Το όνομα είναι υποχρεωτικό</span>}
+          {errors.name && <span className="text-xs text-red-500 mt-1 block">{t.contact.form.nameRequired}</span>}
         </div>
         {/* Email */}
         <div className="relative">
           <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-            Email <span className="text-red-500">*</span>
+            {t.contact.form.emailLabel} <span className="text-red-500">{t.contact.form.required}</span>
           </label>
           <input
                 type="email"
@@ -160,15 +159,15 @@ const Contact: React.FC = () => {
                 onChange={handleChange}
                 required
             className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white ${errors.email ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-gray-300'}`}
-            placeholder="example@email.com"
+            placeholder={t.contact.form.emailPlaceholder}
             autoComplete="off"
           />
-          {errors.email && <span className="text-xs text-red-500 mt-1 block">Εισάγετε έγκυρο email</span>}
+          {errors.email && <span className="text-xs text-red-500 mt-1 block">{t.contact.form.emailRequired}</span>}
         </div>
-        {/* Υπηρεσία */}
+        {/* Service */}
         <div className="relative">
           <label htmlFor="service" className="block text-sm font-semibold text-gray-700 mb-2">
-            Υπηρεσία
+            {t.contact.form.serviceLabel}
           </label>
           <div className="relative">
             <select
@@ -178,13 +177,13 @@ const Contact: React.FC = () => {
               onChange={handleChange}
               className="w-full px-4 py-3 pr-10 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-white border-gray-300 appearance-none cursor-pointer text-gray-700"
             >
-              <option value="">Επιλέξτε υπηρεσία (προαιρετικό)</option>
-              <option value="Κατασκευή Ιστοσελίδων">Κατασκευή Ιστοσελίδων</option>
-              <option value="Εφαρμογή iOS & Android">Εφαρμογή iOS & Android</option>
-              <option value="e-shop">e-shop</option>
-              <option value="AI">AI</option>
-              <option value="Social Media">Social Media</option>
-              <option value="Άλλο..">Άλλο..</option>
+              <option value="">{t.contact.form.servicePlaceholder}</option>
+              <option value={t.contact.services.web}>{t.contact.services.web}</option>
+              <option value={t.contact.services.mobile}>{t.contact.services.mobile}</option>
+              <option value={t.contact.services.eshop}>{t.contact.services.eshop}</option>
+              <option value={t.contact.services.ai}>{t.contact.services.ai}</option>
+              <option value={t.contact.services.social}>{t.contact.services.social}</option>
+              <option value={t.contact.services.other}>{t.contact.services.other}</option>
             </select>
             <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none" />
           </div>
@@ -234,9 +233,9 @@ const Contact: React.FC = () => {
           ) : (
             <FaEnvelope className="h-5 w-5" />
           )}
-          <span>{loading ? 'Αποστολή...' : 'Αποστολή'}</span>
+          <span>{loading ? t.contact.form.sending : t.contact.form.send}</span>
             </motion.button>
-        {success && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-green-600 text-center mt-2">Το μήνυμά σας στάλθηκε!</motion.div>}
+        {success && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-green-600 text-center mt-2">{t.contact.success}</motion.div>}
       </motion.form>
       {/* Info */}
                   <motion.div 
