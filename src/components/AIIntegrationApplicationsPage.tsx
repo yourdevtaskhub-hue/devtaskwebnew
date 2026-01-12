@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaRobot, FaChartLine, FaBrain, FaMagic, FaCogs, FaUserFriends, FaChevronLeft, FaChevronRight, FaMicrochip, FaPython, FaDatabase, FaCodeBranch, FaRegLightbulb, FaCheckCircle } from 'react-icons/fa';
 import { SiTensorflow, SiPytorch, SiOpenai, SiLangchain, SiFlask, SiDjango, SiGraphql } from 'react-icons/si';
+import { useLanguage } from '../hooks/useLanguage';
+import { translations } from '../data/translations';
 // import aiLottie from '../assets/lottie-ai.json';
 const aiLottie = {};
 const hoverSfx = '';

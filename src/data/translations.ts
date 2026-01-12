@@ -567,6 +567,58 @@ export const translations = {
             button: 'Ζητήστε Προσφορά',
             backHome: 'Επιστροφή στην Αρχική'
           }
+        },
+        aiIntegrationApplications: {
+          hero: {
+            title: 'AI στις Εφαρμογές σας — Από το Όραμα στην Υλοποίηση',
+            subtitle: 'Χρησιμοποιούμε τεχνικές machine learning για ανάλυση δεδομένων, δημιουργία προβλέψεων ή έξυπνες λειτουργίες εφαρμογών.',
+            cta: 'Ζητήστε Προσφορά'
+          },
+          services: {
+            title: 'AI Υπηρεσίες',
+            items: [
+              { icon: '📊', title: 'Ανάλυση Δεδομένων & Προβλέψεις με ML', desc: 'Εξαγωγή insights και προβλέψεων από τα δεδομένα σας.' },
+              { icon: '🔍', title: 'Ανίχνευση Προτύπων & Αυτοματισμοί', desc: 'Αναγνώριση patterns και αυτοματοποίηση διαδικασιών.' },
+              { icon: '🤖', title: 'Ενσωμάτωση GPT & NLP Μοντέλων', desc: 'AI συνομιλίες, κατανόηση κειμένου, αυτόματη παραγωγή περιεχομένου.' },
+              { icon: '🎯', title: 'Custom Recommendation Engines', desc: 'Συστάσεις προϊόντων/υπηρεσιών με AI.' },
+              { icon: '✨', title: 'Εξατομίκευση Περιεχομένου', desc: 'AI personalization για κάθε χρήστη.' },
+              { icon: '💬', title: 'Real-time Chatbots & AI Agents', desc: 'Έξυπνα bots για υποστήριξη, πωλήσεις, κρατήσεις.' }
+            ]
+          },
+          technologies: {
+            title: 'Τεχνολογίες & Πλατφόρμες',
+            tabs: [
+              { label: 'AI Frameworks' },
+              { label: 'Backend' },
+              { label: 'APIs' }
+            ]
+          },
+          workflow: {
+            title: 'Πώς Εργάζομαι',
+            items: [
+              { title: 'Ανάλυση Αναγκών', desc: 'Κατανόηση στόχων, απαιτήσεων, δεδομένων.' },
+              { title: 'Συλλογή & Καθαρισμός Δεδομένων', desc: 'Data gathering, cleaning, προετοιμασία.' },
+              { title: 'Εκπαίδευση Μοντέλων', desc: 'ML training, επιλογή αλγορίθμων.' },
+              { title: 'Πειραματισμός & Testing', desc: 'Evaluation, testing, fine-tuning.' },
+              { title: 'Ενσωμάτωση σε UI', desc: 'API integration, frontend σύνδεση.' },
+              { title: 'Monitoring & Updates', desc: 'Συνεχής παρακολούθηση, βελτιώσεις.' }
+            ]
+          },
+          caseStudies: {
+            title: 'Πραγματικά Παραδείγματα',
+            subtitle: 'AI Case Studies',
+            items: [
+              { client: 'E-shop', use: 'AI Προτάσεις προϊόντων', tech: 'TensorFlow, Python', kpi: '+25% conversion' },
+              { client: 'Fintech', use: 'Ανίχνευση απάτης', tech: 'PyTorch, REST API', kpi: '-40% fraud rate' },
+              { client: 'Media', use: 'Αυτόματη δημιουργία περιεχομένου', tech: 'OpenAI, LangChain', kpi: '+60% content output' }
+            ],
+            useLabel: 'Χρήση AI:',
+            techLabel: 'Τεχνολογίες:'
+          },
+          finalCta: {
+            title: 'Δώστε νοημοσύνη στην εφαρμογή σας',
+            button: 'Ξεκινήστε τώρα'
+          }
         }
       }
     },
@@ -1290,6 +1342,58 @@ export const translations = {
             title: 'Need secure, scalable database and cloud solutions? Contact us!',
             button: 'Request a Quote',
             backHome: 'Back to Home'
+          }
+        },
+        aiIntegrationApplications: {
+          hero: {
+            title: 'AI in Your Applications — From Vision to Implementation',
+            subtitle: 'We use machine learning techniques for data analysis, prediction creation, or smart application features.',
+            cta: 'Request a Quote'
+          },
+          services: {
+            title: 'AI Services',
+            items: [
+              { icon: '📊', title: 'Data Analysis & Predictions with ML', desc: 'Extract insights and predictions from your data.' },
+              { icon: '🔍', title: 'Pattern Detection & Automation', desc: 'Pattern recognition and process automation.' },
+              { icon: '🤖', title: 'GPT & NLP Model Integration', desc: 'AI conversations, text understanding, automatic content generation.' },
+              { icon: '🎯', title: 'Custom Recommendation Engines', desc: 'Product/service recommendations with AI.' },
+              { icon: '✨', title: 'Content Personalization', desc: 'AI personalization for every user.' },
+              { icon: '💬', title: 'Real-time Chatbots & AI Agents', desc: 'Smart bots for support, sales, bookings.' }
+            ]
+          },
+          technologies: {
+            title: 'Technologies & Platforms',
+            tabs: [
+              { label: 'AI Frameworks' },
+              { label: 'Backend' },
+              { label: 'APIs' }
+            ]
+          },
+          workflow: {
+            title: 'How I Work',
+            items: [
+              { title: 'Needs Analysis', desc: 'Understanding goals, requirements, data.' },
+              { title: 'Data Collection & Cleaning', desc: 'Data gathering, cleaning, preparation.' },
+              { title: 'Model Training', desc: 'ML training, algorithm selection.' },
+              { title: 'Experimentation & Testing', desc: 'Evaluation, testing, fine-tuning.' },
+              { title: 'UI Integration', desc: 'API integration, frontend connection.' },
+              { title: 'Monitoring & Updates', desc: 'Continuous monitoring, improvements.' }
+            ]
+          },
+          caseStudies: {
+            title: 'Real Examples',
+            subtitle: 'AI Case Studies',
+            items: [
+              { client: 'E-shop', use: 'AI Product Recommendations', tech: 'TensorFlow, Python', kpi: '+25% conversion' },
+              { client: 'Fintech', use: 'Fraud Detection', tech: 'PyTorch, REST API', kpi: '-40% fraud rate' },
+              { client: 'Media', use: 'Automatic Content Generation', tech: 'OpenAI, LangChain', kpi: '+60% content output' }
+            ],
+            useLabel: 'AI Use:',
+            techLabel: 'Technologies:'
+          },
+          finalCta: {
+            title: 'Give intelligence to your application',
+            button: 'Start Now'
           }
         }
       }

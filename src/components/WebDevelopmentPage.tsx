@@ -69,9 +69,15 @@ export default function WebDevelopmentPage() {
   const { language } = useLanguage();
   const t = translations[language];
   // const lottieRef = useRef<LottieRefCurrentProps | null>(null);
-  // const [animatedStats, setAnimatedStats] = useState(stats.map(() => 0));
   // const [mouse, setMouse] = useState({ x: 0, y: 0 });
   // const heroControls = useAnimation();
+
+  // Stats array from translations
+  const stats = [
+    { value: 3, suffix: '', icon: <FaRocket className="text-purple-500 text-3xl" /> },
+    { value: 100, suffix: '%', icon: <FaCloud className="text-cyan-500 text-3xl" /> },
+    { value: 24, suffix: '/7', icon: <FaCogs className="text-pink-500 text-3xl" /> }
+  ];
 
   useEffect(() => { AOS.init({ duration: 800, once: true }); }, []);
 
