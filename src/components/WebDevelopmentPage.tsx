@@ -260,168 +260,355 @@ export default function WebDevelopmentPage() {
         </div>
       </section>
       {/* Χαρακτηριστικά & Οφέλη */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.webDevelopment.features.title}</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          {t.services.pages.webDevelopment.features.items.map((f: any, idx: number) => {
-            const icons = [
-              <FaPaintBrush className="text-blue-500 text-3xl" />,
-              <FaMobileAlt className="text-purple-500 text-3xl" />,
-              <FaSearch className="text-pink-500 text-3xl" />,
-              <FaSyncAlt className="text-cyan-500 text-3xl" />
-            ];
-            return (
-            <div
-              key={f.title}
-              className="group bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl border border-blue-100/40 p-10 flex flex-col items-center text-center cursor-pointer transition-all duration-300 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-200 relative overflow-hidden"
-            >
-              <div className="mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-4 border-blue-200">
-                {icons[idx]}
-              </div>
-              <h4 className="text-xl font-bold text-blue-900 mb-2 group-hover:text-blue-700 transition-colors duration-300 tracking-tight">
-                {f.title}
-              </h4>
-              <p className="text-gray-600 mb-6 text-base leading-relaxed">{f.desc}</p>
-            </div>
-            );
-          })}
-        </div>
-      </section>
-      {/* Δείγματα Έργων */}
-      <section id="showcase-section" className="max-w-7xl mx-auto py-24 px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center">{t.services.pages.webDevelopment.samples.title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {[
-            {
-              img: architectureImg,
-              url: 'https://in-mavridis.gr/'
-            },
-            {
-              img: hydrogenImg,
-              url: 'https://hydrogenlife.eu/'
-            },
-            {
-              img: cryptoImg,
-              url: 'https://panitoscryptocoin.com/'
-            },
-            {
-              img: hotelImg,
-              url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/'
-            }
-          ].map((s, idx) => {
-            const sample = t.services.pages.webDevelopment.samples.items[idx];
-            return (
-            <div
-              key={sample.title}
-              className="group relative bg-white/80 rounded-3xl shadow-2xl border border-blue-100/40 overflow-hidden flex flex-col hover:scale-105 hover:shadow-3xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-200"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={s.img}
-                  alt={sample.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-8 flex flex-col flex-1 relative z-10">
-                <h4 className="text-2xl font-bold text-blue-900 mb-2 group-hover:text-blue-500 transition-colors duration-300 tracking-tight">
-                  {sample.title}
-                </h4>
-                <p className="text-gray-700 text-base mb-4 flex-1 leading-relaxed">{sample.desc}</p>
-                <a
-                  href={s.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-auto px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
-                >
-                  {t.services.pages.webDevelopment.samples.viewProject}
-                </a>
-              </div>
-            </div>
-            );
-          })}
-        </div>
-      </section>
-      {/* Πορεία Υλοποίησης */}
-      <section className="max-w-4xl mx-auto py-24 px-4">
-        <div className="relative bg-gradient-to-br from-blue-100 via-white to-purple-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-100/40 p-10 flex flex-col items-center gap-10 overflow-hidden">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.webDevelopment.process.title}</h2>
-          <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">{t.services.pages.webDevelopment.process.description}</p>
-          {/* Timeline */}
-          <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
-            {t.services.pages.webDevelopment.process.steps.map((step: any, idx: number, arr: any[]) => {
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.webDevelopment.features.title}</motion.h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10">
+            {t.services.pages.webDevelopment.features.items.map((f: any, idx: number) => {
               const icons = [
-                <FaSearch className="text-blue-500 text-2xl" />,
-                <FaPaintBrush className="text-purple-500 text-2xl" />,
-                <FaCode className="text-pink-500 text-2xl" />,
-                <FaRocket className="text-cyan-500 text-2xl" />
+                <FaPaintBrush className="text-blue-500 text-3xl" />,
+                <FaMobileAlt className="text-purple-500 text-3xl" />,
+                <FaSearch className="text-pink-500 text-3xl" />,
+                <FaSyncAlt className="text-cyan-500 text-3xl" />
               ];
               return (
-              <div key={step.title} className="flex items-center w-full mb-8 last:mb-0">
-                <div className="flex flex-col items-center mr-6">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
-                    {idx + 1}
-                  </div>
-                  {idx < arr.length - 1 && (
-                    <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
-                  )}
+              <motion.div
+                key={f.title}
+                className="group relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 md:p-10 flex flex-col items-center text-center cursor-pointer transition-all duration-300 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-200 overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.04, y: -8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                {/* Animated Gradient Background on Hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%'],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                    ease: 'linear',
+                  }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                  }}
+                />
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10 mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-4 border-blue-200 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  {icons[idx]}
                 </div>
-                <div className="flex-1 bg-white/80 rounded-2xl shadow-md border border-blue-100/40 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
-                    {icons[idx]}
-                  </div>
-                  <div>
-                    <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
-                    <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
-                  </div>
-                </div>
-              </div>
+                <h4 className="relative z-10 text-xl font-bold text-blue-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 tracking-tight">
+                  {f.title}
+                </h4>
+                <p className="relative z-10 text-gray-600 mb-6 text-base leading-relaxed">{f.desc}</p>
+              </motion.div>
               );
             })}
           </div>
         </div>
       </section>
-      {/* Τεχνολογίες */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center">{t.services.pages.webDevelopment.technologies.title}</h2>
-        <div className="flex flex-wrap justify-center gap-10">
-          {techStack.map((t, idx) => (
-            <div
-              key={t.name}
-              className="flex flex-col items-center gap-2 bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-blue-100/40 group"
-            >
-              {t.icon}
-              <span className="text-base text-blue-900 font-semibold mt-2">{t.name}</span>
+      {/* Δείγματα Έργων */}
+      <section id="showcase-section" className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tl from-indigo-400/20 via-pink-400/15 to-purple-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.1, 0.9, 1.1],
+                x: [0, -40, 0],
+                y: [0, 30, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.webDevelopment.samples.title}</motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              {
+                img: architectureImg,
+                url: 'https://in-mavridis.gr/'
+              },
+              {
+                img: hydrogenImg,
+                url: 'https://hydrogenlife.eu/'
+              },
+              {
+                img: cryptoImg,
+                url: 'https://panitoscryptocoin.com/'
+              },
+              {
+                img: hotelImg,
+                url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/'
+              }
+            ].map((s, idx) => {
+              const sample = t.services.pages.webDevelopment.samples.items[idx];
+              return (
+              <motion.div
+                key={sample.title}
+                className="group relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 overflow-hidden flex flex-col hover:shadow-2xl transition-all duration-500 cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-200"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.02, y: -8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 z-20"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={s.img}
+                    alt={sample.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6 md:p-8 flex flex-col flex-1 relative z-10">
+                  <h4 className="text-xl md:text-2xl font-bold text-blue-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 transition-all duration-300 tracking-tight">
+                    {sample.title}
+                  </h4>
+                  <p className="text-gray-700 text-base mb-4 flex-1 leading-relaxed">{sample.desc}</p>
+                  <a
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-auto px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  >
+                    {t.services.pages.webDevelopment.samples.viewProject}
+                  </a>
+                </div>
+              </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+      {/* Πορεία Υλοποίησης */}
+      <section className="relative max-w-4xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-blue-400/15 via-purple-400/10 to-cyan-400/15 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.1, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10 bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 md:p-10 flex flex-col items-center gap-10 overflow-hidden hover:shadow-2xl transition-all duration-500">
+          {/* Animated Gradient Background on Hover */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%'],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: 'reverse',
+              ease: 'linear',
+            }}
+            style={{
+              backgroundSize: '200% 200%',
+            }}
+          />
+          <div className="relative z-10 w-full">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-center gradient-text-premium">{t.services.pages.webDevelopment.process.title}</h2>
+            <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-xl text-center mx-auto leading-relaxed">{t.services.pages.webDevelopment.process.description}</p>
+            {/* Timeline */}
+            <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
+              {t.services.pages.webDevelopment.process.steps.map((step: any, idx: number, arr: any[]) => {
+                const icons = [
+                  <FaSearch className="text-blue-500 text-2xl" />,
+                  <FaPaintBrush className="text-purple-500 text-2xl" />,
+                  <FaCode className="text-pink-500 text-2xl" />,
+                  <FaRocket className="text-cyan-500 text-2xl" />
+                ];
+                return (
+                <div key={step.title} className="flex items-center w-full mb-8 last:mb-0">
+                  <div className="flex flex-col items-center mr-6">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
+                      {idx + 1}
+                    </div>
+                    {idx < arr.length - 1 && (
+                      <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
+                    )}
+                  </div>
+                  <div className="flex-1 bg-white/80 backdrop-blur-lg rounded-2xl shadow-md border border-white/50 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
+                      {icons[idx]}
+                    </div>
+                    <div>
+                      <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
+                      <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
+                    </div>
+                  </div>
+                </div>
+                );
+              })}
             </div>
-          ))}
+          </div>
+        </div>
+      </section>
+      {/* Τεχνολογίες */}
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-indigo-400/20 via-pink-400/15 to-purple-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.1, 0.9, 1.1],
+                x: [0, -40, 0],
+                y: [0, 30, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.webDevelopment.technologies.title}</motion.h2>
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-10">
+            {techStack.map((t, idx) => (
+              <motion.div
+                key={t.name}
+                className="group relative flex flex-col items-center gap-2 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+              >
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10">{t.icon}</div>
+                <span className="relative z-10 text-base text-blue-900 font-semibold mt-2 text-center">{t.name}</span>
+              </motion.div>
+              ))}
+          </div>
         </div>
       </section>
       {/* Στατιστικά */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.webDevelopment.stats.title}</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-10">
-          {t.services.pages.webDevelopment.stats.items.map((stat: any, idx: number) => {
-            const statData = [
-              { value: 3, suffix: '', icon: <FaRocket className="text-purple-500 text-3xl" /> },
-              { value: 100, suffix: '%', icon: <FaCloud className="text-cyan-500 text-3xl" /> },
-              { value: 24, suffix: '/7', icon: <FaCogs className="text-pink-500 text-3xl" /> }
-            ];
-            const s = statData[idx];
-            return (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-blue-100/40 p-12 group hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
-            >
-              <div className="mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-4 border-blue-200">
-                {s.icon}
-              </div>
-              <span className="text-5xl font-extrabold text-blue-700 mb-2 animate-pulse">
-                {s.value}{s.suffix}
-              </span>
-              <span className="text-blue-900 font-semibold text-lg text-center tracking-tight">{stat.label}</span>
-            </div>
-            );
-          })}
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.webDevelopment.stats.title}</motion.h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-10">
+            {t.services.pages.webDevelopment.stats.items.map((stat: any, idx: number) => {
+              const statData = [
+                { value: 3, suffix: '', icon: <FaRocket className="text-purple-500 text-3xl" /> },
+                { value: 100, suffix: '%', icon: <FaCloud className="text-cyan-500 text-3xl" /> },
+                { value: 24, suffix: '/7', icon: <FaCogs className="text-pink-500 text-3xl" /> }
+              ];
+              const s = statData[idx];
+              return (
+              <motion.div
+                key={stat.label}
+                className="group relative flex flex-col items-center bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-8 md:p-12 hover:shadow-2xl transition-all duration-300 overflow-hidden"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.04, y: -8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+              >
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10 mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-4 border-blue-200 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                  {s.icon}
+                </div>
+                <span className="relative z-10 text-4xl md:text-5xl font-extrabold text-blue-700 mb-2 animate-pulse">
+                  {s.value}{s.suffix}
+                </span>
+                <span className="relative z-10 text-blue-900 font-semibold text-base md:text-lg text-center tracking-tight">{stat.label}</span>
+              </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>

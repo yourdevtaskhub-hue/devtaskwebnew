@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaInstagram, FaFacebook, FaTiktok, FaLinkedin, FaYoutube, FaTwitter, FaPinterest, FaRegLightbulb, FaRegImages, FaBullhorn, FaUsers, FaChartBar, FaRobot, FaChevronRight, FaChevronLeft, FaCheckCircle, FaRocket, FaChartLine, FaMagic, FaVideo, FaSnapchat, FaWhatsapp, FaTelegram, FaDiscord, FaTwitch, FaReddit } from 'react-icons/fa';
 import { useLanguage } from '../hooks/useLanguage';
 import { translations } from '../data/translations';
+import { useIsMobile } from '../hooks/useIsMobile';
 // import socialLottie from '../assets/lottie-socialmedia.json';
 const socialLottie = {};
 const hoverSfx = '';
@@ -71,6 +72,7 @@ const trendIcons = [
 export default function SocialMediaManagementPage() {
   const { language } = useLanguage();
   const t = translations[language];
+  const isMobile = useIsMobile();
   const [currentSample, setCurrentSample] = useState(0);
   const [modalImg, setModalImg] = useState<string | null>(null);
   const [typed, setTyped] = useState('');
@@ -171,31 +173,129 @@ export default function SocialMediaManagementPage() {
       </section>
 
       {/* Υπηρεσίες που προσφέρουμε */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-pink-700 mb-12 text-center bg-gradient-to-r from-pink-500 to-blue-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.socialMediaManagement.services.title}</motion.h2>
-        <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}>
-          {services.map((s, idx) => (
-            <motion.div key={idx} className="group bg-white/80 backdrop-blur-lg rounded-3xl shadow-xl border border-pink-100/40 p-10 flex flex-col items-center text-center cursor-pointer transition-all duration-300 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-pink-200 relative overflow-hidden" initial={{ opacity: 0, y: 40, scale: 0.97 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.08, boxShadow: '0 8px 32px 0 rgba(255, 80, 200, 0.18)' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.07 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => playSound(clickSfx)}><div className="mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-pink-100 to-blue-100 shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 border-4 border-pink-200 group-hover:border-blue-300">{s.icon}</div><h4 className="text-xl font-bold text-pink-900 mb-2 group-hover:text-pink-700 transition-colors duration-300 tracking-tight">{s.title}</h4><p className="text-gray-600 mb-6 text-base leading-relaxed">{s.desc}</p><motion.div className="absolute inset-0 rounded-3xl pointer-events-none border-2 border-transparent group-hover:border-pink-400 group-focus:border-pink-400 transition-all duration-300" initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} transition={{ duration: 0.3 }} /></motion.div>
-          ))}
-        </motion.div>
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-pink-400/20 via-purple-400/15 to-blue-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.socialMediaManagement.services.title}</motion.h2>
+          <motion.div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:gap-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}>
+            {services.map((s, idx) => (
+              <motion.div key={idx} className="group relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 md:p-10 flex flex-col items-center text-center cursor-pointer transition-all duration-300 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-pink-200 overflow-hidden" initial={{ opacity: 0, y: 40, scale: 0.97 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.04, y: -8 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.07 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => playSound(clickSfx)}>
+                {/* Animated Gradient Background on Hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-pink-500/5 via-purple-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+                  animate={{
+                    backgroundPosition: ['0% 50%', '100% 50%'],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    repeatType: 'reverse',
+                    ease: 'linear',
+                  }}
+                  style={{
+                    backgroundSize: '200% 200%',
+                  }}
+                />
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10 mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-pink-100 to-blue-100 shadow-inner group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 border-4 border-pink-200 group-hover:border-blue-300">{s.icon}</div>
+                <h4 className="relative z-10 text-xl font-bold text-pink-900 mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pink-600 group-hover:to-blue-600 transition-all duration-300 tracking-tight">{s.title}</h4>
+                <p className="relative z-10 text-gray-600 mb-6 text-base leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* Πλατφόρμες που υποστηρίζουμε */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.socialMediaManagement.platforms.title}</motion.h2>
-        <motion.div className="flex flex-wrap justify-center gap-10 mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
-          {platforms.map((p, idx) => (
-            <motion.div key={p.name} className="flex flex-col items-center gap-2 bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-blue-100/40 group" initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.1, boxShadow: '0 0 24px 0 #a5b4fc' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }}>
-              {p.icon}
-              <span className="text-base text-blue-900 font-semibold mt-2">{p.name}</span>
-            </motion.div>
-          ))}
-        </motion.div>
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tl from-indigo-400/20 via-pink-400/15 to-purple-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.1, 0.9, 1.1],
+                x: [0, -40, 0],
+                y: [0, 30, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.socialMediaManagement.platforms.title}</motion.h2>
+          <motion.div className="flex flex-wrap justify-center gap-8 lg:gap-10 mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
+            {platforms.map((p, idx) => (
+              <motion.div key={p.name} className="group relative flex flex-col items-center gap-2 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 overflow-hidden" initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.05, y: -4, boxShadow: '0 0 24px 0 #a5b4fc' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }}>
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10">{p.icon}</div>
+                <span className="relative z-10 text-base text-blue-900 font-semibold mt-2 text-center">{p.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
       {/* ΝΕΑ ΕΝΟΤΗΤΑ: Social Media Excellence & Logo Transformation */}
-      <section className="max-w-7xl mx-auto py-24 px-4" data-section="logo-transformations">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-purple-700 mb-6 text-center bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.socialMediaManagement.logoTransformations.title}</motion.h2>
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden" data-section="logo-transformations">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-purple-400/20 via-pink-400/15 to-blue-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.socialMediaManagement.logoTransformations.title}</motion.h2>
         <motion.p className="text-lg text-gray-700 text-center max-w-4xl mx-auto mb-16">{t.services.pages.socialMediaManagement.logoTransformations.subtitle}</motion.p>
         
         {/* Hero Content */}
@@ -276,6 +376,7 @@ export default function SocialMediaManagementPage() {
             </div>
           </div>
         )}
+        </div>
       </section>
 
       {/* Δείγματα Δουλειάς / Case Studies */}

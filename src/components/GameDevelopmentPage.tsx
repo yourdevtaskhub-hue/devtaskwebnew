@@ -4,6 +4,7 @@ import { FaGamepad, FaMobileAlt, FaVrCardboard, FaUsers, FaPenNib, FaCheckCircle
 import { SiUnity, SiUnrealengine, SiGodotengine, SiBlender, SiAutodesk } from "react-icons/si";
 import { useLanguage } from '../hooks/useLanguage';
 import { translations } from '../data/translations';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const heroImg = "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=80";
 
@@ -27,6 +28,7 @@ const techStack = [
 export default function GameDevelopmentPage() {
   const { language } = useLanguage();
   const t = translations[language] || translations['en'];
+  const isMobile = useIsMobile();
   const [portfolioIdx, setPortfolioIdx] = useState(0);
 
   // Get game development translations with fallback

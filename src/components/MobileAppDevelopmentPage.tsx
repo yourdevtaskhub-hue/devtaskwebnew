@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../hooks/useLanguage';
 import { translations } from '../data/translations';
+import { useIsMobile } from '../hooks/useIsMobile';
 import { FaApple, FaAndroid, FaReact, FaCloud, FaRocket, FaLock, FaPalette, FaBolt, FaStore, FaHeartbeat, FaGraduationCap, FaTruck, FaUsers, FaCode, FaSearch, FaPaintBrush, FaSyncAlt } from 'react-icons/fa';
 import { SiFlutter, SiKotlin, SiSwift, SiFirebase, SiSupabase } from 'react-icons/si';
 import Lottie from 'lottie-react';
@@ -106,6 +107,7 @@ const useCases = [
 export default function MobileAppDevelopmentPage() {
   const { language } = useLanguage();
   const t = translations[language];
+  const isMobile = useIsMobile();
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [fullscreenAlt, setFullscreenAlt] = useState<string>('');
   const [modalImg, setModalImg] = useState<string | null>(null);
@@ -246,22 +248,74 @@ export default function MobileAppDevelopmentPage() {
       </section>
 
       {/* Tools & Technologies */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.tools.title}</motion.h2>
-        <motion.div className="flex flex-wrap justify-center gap-10 mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
-          {tools.map((t, idx) => (
-            <motion.div key={t.name} className="flex flex-col items-center gap-2 bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-blue-100/40 group" initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.1, boxShadow: '0 0 24px 0 #a5b4fc' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => playSound(clickSfx)}>{t.icon}<span className="text-base text-blue-900 font-semibold mt-2">{t.name}</span></motion.div>
-          ))}
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <img src={appsImg} alt="Ομάδα Mobile Development" className="rounded-3xl shadow-2xl object-cover object-center w-full h-64 md:h-80" />
-          <img src={unsplashUX} alt="Mobile UI/UX" className="rounded-3xl shadow-2xl object-cover object-center w-full h-64 md:h-80" />
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.mobileAppDevelopment.tools.title}</motion.h2>
+          <motion.div className="flex flex-wrap justify-center gap-8 lg:gap-10 mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
+            {tools.map((t, idx) => (
+              <motion.div key={t.name} className="group relative flex flex-col items-center gap-2 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-white/50 p-6 md:p-8 hover:shadow-2xl transition-all duration-300 overflow-hidden" initial={{ opacity: 0, y: 30, scale: 0.95 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} whileHover={{ scale: 1.05, y: -4, boxShadow: '0 0 24px 0 #a5b4fc' }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.1 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => playSound(clickSfx)}>
+                {/* Shine Effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.8 }}
+                />
+                <div className="relative z-10">{t.icon}</div>
+                <span className="relative z-10 text-base text-blue-900 font-semibold mt-2 text-center">{t.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <img src={appsImg} alt="Ομάδα Mobile Development" className="rounded-3xl shadow-2xl object-cover object-center w-full h-64 md:h-80" />
+            <img src={unsplashUX} alt="Mobile UI/UX" className="rounded-3xl shadow-2xl object-cover object-center w-full h-64 md:h-80" />
+          </div>
         </div>
       </section>
 
       {/* UI/UX Samples Section */}
-      <section id="uiux-samples" className="max-w-7xl mx-auto py-24 px-2 sm:px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.uiSamples.title}</h2>
+      <section id="uiux-samples" className="relative max-w-7xl mx-auto py-24 md:py-32 px-2 sm:px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-indigo-400/20 via-pink-400/15 to-purple-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1.1, 0.9, 1.1],
+                x: [0, -40, 0],
+                y: [0, 30, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.mobileAppDevelopment.uiSamples.title}</motion.h2>
         <p className="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">{t.services.pages.mobileAppDevelopment.uiSamples.description}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {/* Finance App (UIsamples) */}
@@ -321,6 +375,7 @@ export default function MobileAppDevelopmentPage() {
             </div>
           </div>
         </div>
+        </div>
         {/* Modal για full size εικόνα */}
         {modalImg && (
           <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm" onClick={() => setModalImg(null)}>
@@ -346,41 +401,62 @@ export default function MobileAppDevelopmentPage() {
         <div className="relative bg-gradient-to-br from-blue-100 via-white to-purple-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-100/40 p-10 flex flex-col items-center gap-10 overflow-hidden">
           <h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-8 bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.process.title}</h2>
           <p className="text-lg text-gray-700 mb-10 max-w-xl text-center">{t.services.pages.mobileAppDevelopment.process.description}</p>
-          {/* Timeline */}
-          <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
-            {t.services.pages.mobileAppDevelopment.process.steps.map((stepItem, idx) => {
-              const icons = [<FaPalette className="text-blue-400 text-2xl" />, <FaPalette className="text-pink-400 text-2xl" />, <FaCode className="text-purple-400 text-2xl" />, <FaRocket className="text-yellow-400 text-2xl" />, <FaCloud className="text-blue-400 text-2xl" />];
-              const step = { icon: icons[idx], title: stepItem.title, desc: stepItem.desc };
-              const arr = t.services.pages.mobileAppDevelopment.process.steps;
-              return (
-                <div key={stepItem.title} className="flex items-center w-full mb-8 last:mb-0">
-                  <div className="flex flex-col items-center mr-6">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
-                      {idx + 1}
+            {/* Timeline */}
+            <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
+              {t.services.pages.mobileAppDevelopment.process.steps.map((stepItem, idx) => {
+                const icons = [<FaPalette className="text-blue-400 text-2xl" />, <FaPalette className="text-pink-400 text-2xl" />, <FaCode className="text-purple-400 text-2xl" />, <FaRocket className="text-yellow-400 text-2xl" />, <FaCloud className="text-blue-400 text-2xl" />];
+                const step = { icon: icons[idx], title: stepItem.title, desc: stepItem.desc };
+                const arr = t.services.pages.mobileAppDevelopment.process.steps;
+                return (
+                  <div key={stepItem.title} className="flex items-center w-full mb-8 last:mb-0">
+                    <div className="flex flex-col items-center mr-6">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-2xl font-bold shadow-lg border-4 border-white">
+                        {idx + 1}
+                      </div>
+                      {idx < arr.length - 1 && (
+                        <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
+                      )}
                     </div>
-                    {idx < arr.length - 1 && (
-                      <div className="w-1 h-12 bg-gradient-to-b from-blue-300 to-purple-200 mx-auto"></div>
-                    )}
+                    <div className="flex-1 bg-white/80 backdrop-blur-lg rounded-2xl shadow-md border border-white/50 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
+                        {step.icon}
+                      </div>
+                      <div>
+                        <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
+                        <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex-1 bg-white/80 rounded-2xl shadow-md border border-blue-100/40 px-6 py-5 flex flex-col md:flex-row items-center md:items-start gap-4">
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 shadow-inner border-2 border-blue-200">
-                      {step.icon}
-                    </div>
-                    <div>
-                      <span className="text-base font-semibold text-blue-900 text-center md:text-left block">{step.title}</span>
-                      <span className="text-sm text-gray-600 text-center md:text-left block mt-1">{step.desc}</span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
         </div>
       </section>
 
       {/* Portfolio Showcase */}
-      <section className="max-w-7xl mx-auto py-24 px-4">
-        <motion.h2 className="text-3xl md:text-4xl font-extrabold text-blue-700 mb-12 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-lg">{t.services.pages.mobileAppDevelopment.portfolio.title}</motion.h2>
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 50, 0],
+                y: [0, -30, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40" />
+            <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10">
+          <motion.h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-12 text-center gradient-text-premium" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>{t.services.pages.mobileAppDevelopment.portfolio.title}</motion.h2>
         
         {/* GetFitSKG App Showcase */}
         <motion.div 
@@ -528,15 +604,62 @@ export default function MobileAppDevelopmentPage() {
               </div>
             </motion.div>
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Final CTA Section */}
-      <section className="max-w-7xl mx-auto py-24 px-4 flex flex-col items-center text-center">
-        <motion.div className="relative bg-gradient-to-br from-blue-100 via-white to-purple-100/80 backdrop-blur-lg rounded-3xl shadow-2xl border border-blue-100/40 p-12 flex flex-col items-center" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-blue-900 mb-6 tracking-tight">{t.services.pages.mobileAppDevelopment.finalCta.title}</h2>
-          <motion.button className="inline-block px-12 py-5 bg-gradient-to-r from-blue-600 to-purple-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden mt-6" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{t.services.pages.mobileAppDevelopment.finalCta.button}</span></motion.button>
-        </motion.div>
+      <section className="relative max-w-7xl mx-auto py-24 md:py-32 px-4 flex flex-col items-center text-center overflow-hidden">
+        {/* Premium Background - Desktop Only */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute top-0 right-0 w-[400px] h-[400px] bg-gradient-to-br from-blue-400/20 via-purple-400/15 to-cyan-400/20 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.2, 1],
+                x: [0, 30, 0],
+                y: [0, -20, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+            />
+            <div className="absolute inset-0 opacity-[0.015] bg-[linear-gradient(to_right,#6366f1_1px,transparent_1px),linear-gradient(to_bottom,#6366f1_1px,transparent_1px)] bg-[size:48px_48px]" />
+          </>
+        )}
+        <div className="relative z-10 w-full max-w-4xl">
+          <motion.div className="relative bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white/50 p-8 md:p-12 flex flex-col items-center hover:shadow-2xl transition-all duration-500 overflow-hidden" initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
+            {/* Animated Gradient Background on Hover */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 hover:opacity-100 transition-opacity duration-500 rounded-3xl"
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%'],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                repeatType: 'reverse',
+                ease: 'linear',
+              }}
+              style={{
+                backgroundSize: '200% 200%',
+              }}
+            />
+            {/* Shine Effect */}
+            <motion.div
+              className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 hover:opacity-100"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: '100%' }}
+              transition={{ duration: 0.8 }}
+            />
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 tracking-tight gradient-text-premium">{t.services.pages.mobileAppDevelopment.finalCta.title}</h2>
+              <motion.button className="inline-block px-12 py-5 bg-gradient-to-r from-blue-600 to-purple-400 text-white rounded-full font-bold text-xl shadow-3xl border-2 border-transparent hover:border-blue-400 hover:shadow-[0_0_32px_0_#a78bfa] focus:outline-none focus:ring-2 focus:ring-blue-400 animate-fade-in flex items-center gap-2 relative overflow-hidden mt-6" whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 #a78bfa', filter: 'brightness(1.1)', borderColor: '#a78bfa' }} whileTap={{ scale: 0.97 }} onMouseEnter={() => playSound(hoverSfx)} onClick={() => { window.location.href = '/contactme'; }}><span className="relative z-10">{t.services.pages.mobileAppDevelopment.finalCta.button}</span></motion.button>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Fullscreen Image Modal */}
