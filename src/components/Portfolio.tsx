@@ -179,7 +179,7 @@ const Portfolio: React.FC = () => {
       gradient: 'from-blue-400 to-indigo-500',
       title: t.portfolio.projects.hotel.title,
       description: t.portfolio.projects.hotel.description,
-      url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/'
+      url: 'https://stsrr.netlify.app/'
     },
     {
       key: 'crypto',
@@ -190,6 +190,16 @@ const Portfolio: React.FC = () => {
       title: t.portfolio.projects.crypto.title,
       description: t.portfolio.projects.crypto.description,
       url: 'https://panitoscryptocoin.com/'
+    },
+    {
+      key: 'blog',
+      icon: Heart,
+      image: videoImg,
+      technologies: ['Blog', 'Content', 'Wellness'],
+      gradient: 'from-green-400 to-emerald-500',
+      title: t.portfolio.projects.blog.title,
+      description: t.portfolio.projects.blog.description,
+      url: 'https://clever-peony-930036.netlify.app/'
     }
   ], [t, language]);
 

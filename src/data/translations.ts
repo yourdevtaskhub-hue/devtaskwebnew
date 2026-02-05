@@ -822,6 +822,10 @@ export const translations = {
           title: 'Ξενοδοχείο',
           description: 'Ελκυστική ιστοσελίδα ξενοδοχείου με interactive photo gallery, σύστημα online κρατήσεων, παρουσίαση δωματίων και υπηρεσιών, και responsive design. Η πλατφόρμα δημιουργήθηκε για να προσελκύει επισκέπτες και να διευκολύνει τις κρατήσεις.'
         },
+        blog: {
+          title: 'Blog Ευ Ζήν',
+          description: 'Αποκλειστική πλατφόρμα blog αφιερωμένη στη διάδοση γνώσης για υγιεινή διαβίωση, ευzοϊκούς τρόπους ζωής και προσωπική ανάπτυξη. Το blog παρουσιάζει άρθρα, συμβουλές και συστάσεις για ένα καλύτερο, πιο υγιές lifestyle. Σχεδιασμένη με ενδιαφέρον περιεχόμενο που ενημερώνει και εμπνέει τους αναγνώστες.'
+        },
         crypto: {
           title: 'Προώθηση Custom CryptoCoin',
           description: 'Δυναμική landing page για την προώθηση custom κρυπτονομίσματος με σύγχρονες animations, interactive elements, και conversion-optimized design. Η σελίδα παρουσιάζει το project με εντυπωσιακό τρόπο και ενθαρρύνει τους επισκέπτες να συμμετάσχουν.'
@@ -1870,6 +1874,10 @@ export const translations = {
         hotel: {
           title: 'Hotel',
           description: 'Attractive hotel website with interactive photo gallery, online booking system, room and service presentation, and responsive design. The platform was created to attract visitors and facilitate bookings.'
+        },
+        blog: {
+          title: 'Blog Eu Zin',
+          description: 'Exclusive blogging platform dedicated to spreading knowledge about healthy living, wellness lifestyle, and personal development. The blog features articles, tips and recommendations for a better, healthier lifestyle. Designed with engaging content that informs and inspires readers.'
         },
         crypto: {
           title: 'Custom CryptoCoin Promotion',
