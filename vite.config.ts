@@ -24,8 +24,13 @@ export default defineConfig({
           if (id.includes('node_modules/react') || id.includes('node_modules/react-dom') || id.includes('node_modules/react-router')) {
             return 'react-vendor';
           }
-          // Animation libraries chunk
-          if (id.includes('node_modules/framer-motion') || id.includes('node_modules/gsap') || id.includes('node_modules/aos')) {
+          // Prefer to colocate framer-motion with React to ensure React exports
+          // are available before animation code runs (avoids createContext undefined).
+          if (id.includes('node_modules/framer-motion')) {
+            return 'react-vendor';
+          }
+          // Other animation libraries can remain separate
+          if (id.includes('node_modules/gsap') || id.includes('node_modules/aos')) {
             return 'animation-vendor';
           }
           // UI libraries chunk
