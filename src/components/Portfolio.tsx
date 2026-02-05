@@ -45,6 +45,7 @@ const getFitImages = [
 const Portfolio: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language];
+  const tp = (t as any).portfolio ?? {};
   const isMobile = useIsMobile();
   const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
   const [fullscreenAlt, setFullscreenAlt] = useState<string>('');
@@ -140,68 +141,71 @@ const Portfolio: React.FC = () => {
     }
   }, [fullscreenImage, isGetFitImage, goToPrevious, goToNext]);
 
-  const projects = useMemo(() => [
-    {
-      key: 'clinic',
-      icon: Heart,
-      image: clinicImg,
-      technologies: ['React', 'Telemedicine', 'Healthcare', 'Booking'],
-      gradient: 'from-red-500 to-pink-600',
-      title: t.portfolio.projects.clinic.title,
-      description: t.portfolio.projects.clinic.description,
-      url: 'https://onlineparentteenclinic.com/'
-    },
-    {
-      key: 'architecture',
-      icon: Monitor,
-      image: architectureImg,
-      technologies: ['React', 'Tailwind', 'SEO'],
-      gradient: 'from-blue-500 to-purple-600',
-      title: t.portfolio.projects.architecture.title,
-      description: t.portfolio.projects.architecture.description,
-      url: 'https://in-mavridis.gr/'
-    },
-    {
-      key: 'wellness',
-      icon: Smartphone,
-      image: hydrogenImg,
-      technologies: ['Next.js', 'Booking', 'CMS'],
-      gradient: 'from-green-500 to-teal-600',
-      title: t.portfolio.projects.wellness.title,
-      description: t.portfolio.projects.wellness.description,
-      url: 'https://hydrogenlife.eu/'
-    },
-    {
-      key: 'hotel',
-      icon: Monitor,
-      image: hotelImg,
-      technologies: ['React', 'Gallery', 'Booking'],
-      gradient: 'from-blue-400 to-indigo-500',
-      title: t.portfolio.projects.hotel.title,
-      description: t.portfolio.projects.hotel.description,
-      url: 'https://stsrr.netlify.app/'
-    },
-    {
-      key: 'crypto',
-      icon: BarChart3,
-      image: cryptoImg,
-      technologies: ['React', 'Landing', 'Animation'],
-      gradient: 'from-yellow-500 to-pink-500',
-      title: t.portfolio.projects.crypto.title,
-      description: t.portfolio.projects.crypto.description,
-      url: 'https://panitoscryptocoin.com/'
-    },
-    {
-      key: 'blog',
-      icon: Heart,
-      image: videoImg,
-      technologies: ['Blog', 'Content', 'Wellness'],
-      gradient: 'from-green-400 to-emerald-500',
-      title: t.portfolio.projects.blog.title,
-      description: t.portfolio.projects.blog.description,
-      url: 'https://clever-peony-930036.netlify.app/'
-    }
-  ], [t, language]);
+  const projects = useMemo(() => {
+    const p = (t as any).portfolio?.projects ?? {};
+    return [
+      {
+        key: 'clinic',
+        icon: Heart,
+        image: clinicImg,
+        technologies: ['React', 'Telemedicine', 'Healthcare', 'Booking'],
+        gradient: 'from-red-500 to-pink-600',
+        title: p.clinic?.title ?? 'Clinic',
+        description: p.clinic?.description ?? '',
+        url: 'https://onlineparentteenclinic.com/'
+      },
+      {
+        key: 'architecture',
+        icon: Monitor,
+        image: architectureImg,
+        technologies: ['React', 'Tailwind', 'SEO'],
+        gradient: 'from-blue-500 to-purple-600',
+        title: p.architecture?.title ?? 'Architecture',
+        description: p.architecture?.description ?? '',
+        url: 'https://in-mavridis.gr/'
+      },
+      {
+        key: 'wellness',
+        icon: Smartphone,
+        image: hydrogenImg,
+        technologies: ['Next.js', 'Booking', 'CMS'],
+        gradient: 'from-green-500 to-teal-600',
+        title: p.wellness?.title ?? 'Wellness',
+        description: p.wellness?.description ?? '',
+        url: 'https://hydrogenlife.eu/'
+      },
+      {
+        key: 'hotel',
+        icon: Monitor,
+        image: hotelImg,
+        technologies: ['React', 'Gallery', 'Booking'],
+        gradient: 'from-blue-400 to-indigo-500',
+        title: p.hotel?.title ?? 'Hotel',
+        description: p.hotel?.description ?? '',
+        url: 'https://stsrr.netlify.app/'
+      },
+      {
+        key: 'crypto',
+        icon: BarChart3,
+        image: cryptoImg,
+        technologies: ['React', 'Landing', 'Animation'],
+        gradient: 'from-yellow-500 to-pink-500',
+        title: p.crypto?.title ?? 'Crypto',
+        description: p.crypto?.description ?? '',
+        url: 'https://panitoscryptocoin.com/'
+      },
+      {
+        key: 'blog',
+        icon: Heart,
+        image: videoImg,
+        technologies: ['Blog', 'Content', 'Wellness'],
+        gradient: 'from-green-400 to-emerald-500',
+        title: p.blog?.title ?? 'Blog',
+        description: p.blog?.description ?? '',
+        url: 'https://clever-peony-930036.netlify.app/'
+      }
+    ];
+  }, [t, language]);
 
   return (
     <section id="portfolio" className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 relative overflow-hidden">
@@ -231,8 +235,8 @@ const Portfolio: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{t.portfolio.title}</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t.portfolio.subtitle}</p>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{tp.title ?? 'Portfolio'}</h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">{tp.subtitle ?? ''}</p>
         </div>
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
