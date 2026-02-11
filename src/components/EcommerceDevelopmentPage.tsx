@@ -19,6 +19,7 @@ import clinicImg from '../assets/clinic.png';
 import hydrogenImg from '../assets/hydrogen.png';
 import hotelImg from '../assets/Hotel.png';
 import cryptoImg from '../assets/crypto.png';
+import jewelsImg from '../assets/jewels.png';
 
 function playSound(src: string) {
   if (!src) return;
@@ -134,8 +135,9 @@ export default function EcommerceDevelopmentPage() {
   const clients = useMemo(() => [
     { name: t.services.pages.ecommerceDevelopment.portfolio.clients[0].name, url: 'https://onlineparentteenclinic.com/', img: clinicImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[0].desc },
     { name: t.services.pages.ecommerceDevelopment.portfolio.clients[1].name, url: 'https://hydrogenlife.eu/', img: hydrogenImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[1].desc },
-    { name: t.services.pages.ecommerceDevelopment.portfolio.clients[2].name, url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/', img: hotelImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[2].desc },
+    { name: t.services.pages.ecommerceDevelopment.portfolio.clients[2].name, url: 'https://serenity-hotel-lux.netlify.app/', img: hotelImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[2].desc },
     { name: t.services.pages.ecommerceDevelopment.portfolio.clients[3].name, url: 'https://panitoscryptocoin.com/', img: cryptoImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[3].desc },
+    { name: t.services.pages.ecommerceDevelopment.portfolio.clients[4].name, url: 'https://stsrr.netlify.app/', img: jewelsImg, desc: t.services.pages.ecommerceDevelopment.portfolio.clients[4].desc },
   ], [t]);
 
   return (

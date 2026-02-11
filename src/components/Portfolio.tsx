@@ -6,10 +6,11 @@ import { useLanguage } from '../hooks/useLanguage';
 import { translations } from '../data/translations';
 import architectureImg from '../assets/architecture.png';
 import hydrogenImg from '../assets/hydrogen.png';
-import videoImg from '../assets/video.jpg';
+import wellbeingImg from '../assets/Wellbeing.png';
 import cryptoImg from '../assets/crypto.png';
 import hotelImg from '../assets/Hotel.png';
 import clinicImg from '../assets/clinic.png';
+import jewelsImg from '../assets/jewels.png';
 import { useIsMobile } from '../hooks/useIsMobile';
 // GetFit App Images
 import v1Img from '../assets/v1.png';
@@ -182,7 +183,7 @@ const Portfolio: React.FC = () => {
         gradient: 'from-blue-400 to-indigo-500',
         title: p.hotel?.title ?? 'Hotel',
         description: p.hotel?.description ?? '',
-        url: 'https://stsrr.netlify.app/'
+        url: 'https://serenity-hotel-lux.netlify.app/'
       },
       {
         key: 'crypto',
@@ -197,12 +198,22 @@ const Portfolio: React.FC = () => {
       {
         key: 'blog',
         icon: Heart,
-        image: videoImg,
+        image: wellbeingImg,
         technologies: ['Blog', 'Content', 'Wellness'],
         gradient: 'from-green-400 to-emerald-500',
         title: p.blog?.title ?? 'Blog',
         description: p.blog?.description ?? '',
         url: 'https://clever-peony-930036.netlify.app/'
+      },
+      {
+        key: 'jewelry',
+        icon: Monitor,
+        image: jewelsImg,
+        technologies: ['Luxury', 'E-commerce', 'Jewelry', 'Watches'],
+        gradient: 'from-yellow-400 to-orange-500',
+        title: p.jewelry?.title ?? 'Jewelry Store',
+        description: p.jewelry?.description ?? '',
+        url: 'https://stsrr.netlify.app/'
       }
     ];
   }, [t, language]);

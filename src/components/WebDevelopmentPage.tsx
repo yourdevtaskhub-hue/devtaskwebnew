@@ -25,6 +25,7 @@ import hotelImg from '../assets/Hotel.png';
 import architectureImg from '../assets/architecture.png';
 import hydrogenImg from '../assets/hydrogen.png';
 import cryptoImg from '../assets/crypto.png';
+import jewelsImg from '../assets/jewels.png';
 import cmdImg from '../assets/cmd.jpg';
 
 const floatingIcons = [
@@ -376,7 +377,11 @@ export default function WebDevelopmentPage() {
               },
               {
                 img: hotelImg,
-                url: 'https://684ad438cfcdad7a5e3a8db8--serenity-hotel-lux.netlify.app/'
+                url: 'https://serenity-hotel-lux.netlify.app/'
+              },
+              {
+                img: jewelsImg,
+                url: 'https://stsrr.netlify.app/'
               }
             ].map((s, idx) => {
               const sample = t.services.pages.webDevelopment.samples.items[idx];

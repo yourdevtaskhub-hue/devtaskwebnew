@@ -134,6 +134,10 @@ export const translations = {
               {
                 title: 'Ξενοδοχείο',
                 desc: 'Προωθητικό site ξενοδοχείου με gallery και φόρμα επικοινωνίας.'
+              },
+              {
+                title: 'Πολυτελές Κοσμηματοπωλείο',
+                desc: 'E-commerce κοσμηματοπωλείου που εκθέτει πολύτιμα κοσμήματα και πολυτελή ρολόγια.'
               }
             ]
           },
@@ -333,7 +337,8 @@ export const translations = {
               { name: 'Διαδικτυακό Ιατρείο Γονέων και Εφήβων', desc: 'Πλατφόρμα τηλεϊατρικής με online ραντεβού & διαχείριση.' },
               { name: 'HydrogenLife', desc: 'E-shop wellness με online κρατήσεις.' },
               { name: 'Serenity Hotel', desc: 'Online κρατήσεις & διαχείριση.' },
-              { name: 'PanitosCrypto', desc: 'Προώθηση & πωλήσεις crypto.' }
+              { name: 'PanitosCrypto', desc: 'Προώθηση & πωλήσεις crypto.' },
+              { name: 'Πολυτελές Κοσμηματοπωλείο STSRR', desc: 'E-commerce πολυτελών κοσμημάτων και ρολόγων.' }
             ]
           },
           finalCta: {
@@ -826,6 +831,10 @@ export const translations = {
           title: 'Blog Ευ Ζήν',
           description: 'Αποκλειστική πλατφόρμα blog αφιερωμένη στη διάδοση γνώσης για υγιεινή διαβίωση, ευzοϊκούς τρόπους ζωής και προσωπική ανάπτυξη. Το blog παρουσιάζει άρθρα, συμβουλές και συστάσεις για ένα καλύτερο, πιο υγιές lifestyle. Σχεδιασμένη με ενδιαφέρον περιεχόμενο που ενημερώνει και εμπνέει τους αναγνώστες.'
         },
+        jewelry: {
+          title: 'Πολυτελές Κοσμηματοπωλείο',
+          description: 'Εκλεπτυσμένο e-commerce κοσμηματοπωλείου πολυτελείας που παρουσιάζει πολύτιμα κοσμήματα και εκλεκτά ρολόγια. Η πλατφόρμα προσφέρει αναλυτικές παρουσιάσεις προϊόντων, σύστημα διαχείρισης καταλόγου και ασφαλές checkout για τους εκλεκτούς πελάτες της.'
+        },
         crypto: {
           title: 'Προώθηση Custom CryptoCoin',
           description: 'Δυναμική landing page για την προώθηση custom κρυπτονομίσματος με σύγχρονες animations, interactive elements, και conversion-optimized design. Η σελίδα παρουσιάζει το project με εντυπωσιακό τρόπο και ενθαρρύνει τους επισκέπτες να συμμετάσχουν.'
@@ -1190,6 +1199,10 @@ export const translations = {
               {
                 title: 'Hotel',
                 desc: 'Promotional hotel site with gallery and contact form.'
+              },
+              {
+                title: 'Luxury Jewelry Store',
+                desc: 'E-commerce platform displaying precious gems and luxury watches.'
               }
             ]
           },
@@ -1388,7 +1401,8 @@ export const translations = {
               { name: 'Online Parent & Teen Clinic', desc: 'Telemedicine platform with online appointments & management.' },
               { name: 'HydrogenLife', desc: 'Wellness e-shop with online reservations.' },
               { name: 'Serenity Hotel', desc: 'Online reservations & management.' },
-              { name: 'PanitosCrypto', desc: 'Crypto promotion & sales.' }
+              { name: 'PanitosCrypto', desc: 'Crypto promotion & sales.' },
+              { name: 'STSRR Luxury Jewelry', desc: 'E-commerce for luxury jewelry and fine watches.' }
             ]
           },
           finalCta: {
@@ -1879,6 +1893,10 @@ export const translations = {
           title: 'Blog Eu Zin',
           description: 'Exclusive blogging platform dedicated to spreading knowledge about healthy living, wellness lifestyle, and personal development. The blog features articles, tips and recommendations for a better, healthier lifestyle. Designed with engaging content that informs and inspires readers.'
         },
+        jewelry: {
+          title: 'Luxury Jewelry Store',
+          description: 'Refined luxury jewelry e-commerce platform showcasing precious gems and select timepieces. The platform offers comprehensive product presentations, catalog management system, and secure checkout for the most distinguished customers.'
+        },
         crypto: {
           title: 'Custom CryptoCoin Promotion',
           description: 'Dynamic landing page for promoting custom cryptocurrency with modern animations, interactive elements, and conversion-optimized design. The page presents the project in an impressive way and encourages visitors to participate.'
@@ -2243,6 +2261,10 @@ export const translations = {
               {
                 title: 'Hôtel',
                 desc: 'Site promotionnel d\'hôtel avec galerie et formulaire de contact.'
+              },
+              {
+                title: 'Joaillerie Luxe',
+                desc: 'Plateforme e-commerce exposant des bijoux précieux et des montres de luxe.'
               }
             ]
           },
@@ -2441,7 +2463,8 @@ export const translations = {
               { name: 'Clinique en Ligne pour Parents et Adolescents', desc: 'Plateforme de télémedecine avec rendez-vous en ligne et gestion.' },
               { name: 'HydrogenLife', desc: 'Boutique wellness avec réservations en ligne.' },
               { name: 'Serenity Hotel', desc: 'Réservations en ligne et gestion.' },
-              { name: 'PanitosCrypto', desc: 'Promotion et ventes crypto.' }
+              { name: 'PanitosCrypto', desc: 'Promotion et ventes crypto.' },
+              { name: 'STSRR Joaillerie Luxe', desc: 'E-commerce de bijoux de luxe et montres fines.' }
             ]
           },
           finalCta: {
@@ -2927,6 +2950,10 @@ export const translations = {
         hotel: {
           title: 'Hôtel',
           description: 'Site web attractif d\'hôtel avec galerie photo interactive, système de réservation en ligne, présentation des chambres et services, et design responsive. La plateforme a été créée pour attirer les visiteurs et faciliter les réservations.'
+        },
+        jewelry: {
+          title: 'Joaillerie de Luxe',
+          description: 'Plateforme e-commerce de joaillerie de luxe raffinée présentant des pierres précieuses et des montres sélectionnées. La plateforme offre des présentations de produits complètes, un système de gestion de catalogue et un processus de paiement sécurisé pour la clientèle la plus distinguée.'
         },
         crypto: {
           title: 'Promotion de CryptoMonnaie Personnalisée',
