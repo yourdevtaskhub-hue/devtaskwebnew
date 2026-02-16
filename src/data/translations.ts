@@ -917,8 +917,8 @@ export const translations = {
       },
       info: {
         location: 'Θεσσαλονίκη, Ελλάδα',
-        phone: '+30 694 971 982 563',
-        email: 'info@devtaskhub.com'
+        phone: '+30 697 198 2563',
+        email: 'devtaskhub@gmail.com'
       },
       success: 'Το μήνυμά σας στάλθηκε επιτυχώς!',
       emailCopied: 'Το email αντιγράφηκε!',
@@ -1979,8 +1979,8 @@ export const translations = {
       },
       info: {
         location: 'Thessaloniki, Greece',
-        phone: '+30 694 971 982 563',
-        email: 'info@devtaskhub.com'
+        phone: '+30 697 198 2563',
+        email: 'devtaskhub@gmail.com'
       },
       success: 'Your message was sent successfully!',
       emailCopied: 'Email copied!',
@@ -3037,8 +3037,8 @@ export const translations = {
       },
       info: {
         location: 'Thessalonique, Grèce',
-        phone: '+30 694 971 982 563',
-        email: 'info@devtaskhub.com'
+        phone: '+30 697 198 2563',
+        email: 'devtaskhub@gmail.com'
       },
       success: 'Votre message a été envoyé avec succès!',
       emailCopied: 'Email copié!',
